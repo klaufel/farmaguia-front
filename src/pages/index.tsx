@@ -65,7 +65,7 @@ export default function PageHome({ pharmacies }: PageHomeProps) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const apiUrl =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
