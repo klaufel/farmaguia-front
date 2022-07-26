@@ -15,6 +15,7 @@
     "phoenix": "pnpm -r exec -- pnpm dlx rimraf node_modules && pnpm dlx rimraf node_modules pnpm-lock.yaml && pnpm install"
   },
   "dependencies": {
+    "@heroicons/react": "1.0.6",
     "@pod/config": "workspace:*",
     "@pod/theme": "workspace:*",
     "next": "12.2.3",
