@@ -1,6 +1,6 @@
 export const pharmacies = [
   {
-    id: 1,
+    id: '80d8d8c7-66a2-4326-bb52-e37512f1ffab',
     name: 'Manuel Guillén',
     phone: '968 78 01 65',
     web: 'https://www.farmaciaguillen.com/',
@@ -16,7 +16,7 @@ export const pharmacies = [
         ['17:00', '21:00'],
       ],
       [
-        ['9:00', '14:00'],
+        ['9:00', '10:21'],
         ['17:00', '21:00'],
       ],
       [
@@ -36,7 +36,7 @@ export const pharmacies = [
     ],
   },
   {
-    id: 2,
+    id: 'adce57ac-d9be-480c-a405-64d1184b02af',
     name: 'Miguel Cambronero',
     phone: '968 78 28 12',
     web: '',
@@ -72,7 +72,7 @@ export const pharmacies = [
     ],
   },
   {
-    id: 3,
+    id: 'df3e5088-f0ba-4138-9169-f1edb59b9e61',
     name: 'Pedro Soriano',
     phone: '968 78 00 05',
     web: '',
@@ -108,7 +108,7 @@ export const pharmacies = [
     ],
   },
   {
-    id: 4,
+    id: '8b92a71b-a83a-4b7a-8ba2-14ea5c5a47ab',
     name: 'Aurora Azorín',
     phone: '968 78 01 30',
     web: '',
@@ -144,7 +144,7 @@ export const pharmacies = [
     ],
   },
   {
-    id: 5,
+    id: '24675246-01e2-4eb6-9479-f4fd8105f7b7',
     name: 'Diego Soriano',
     phone: '968 78 25 08',
     web: '',
@@ -180,7 +180,7 @@ export const pharmacies = [
     ],
   },
   {
-    id: 6,
+    id: '0aedbb5d-fff8-4f2b-a2e3-b4e80a49d2d1',
     name: 'Manuel Mazuelas',
     phone: '968 78 23 15',
     web: '',
@@ -216,7 +216,7 @@ export const pharmacies = [
     ],
   },
   {
-    id: 7,
+    id: 'dd3ae52b-f9aa-4b1e-9fd4-ad906c9a9b56',
     name: 'Alberto Agulló',
     phone: '968 78 00 88',
     web: '',

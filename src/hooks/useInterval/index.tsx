@@ -1,4 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
+
+const useIsomporphicEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 export default function useInterval(
   callback: () => void,
@@ -6,7 +9,7 @@ export default function useInterval(
 ) {
   const savedCallback = useRef(callback);
 
-  useEffect(() => {
+  useIsomporphicEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
 
