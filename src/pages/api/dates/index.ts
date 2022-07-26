@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { dates } from './response';
+import { guardDates } from './response';
 
 export default function apiPharmacies(
   _req: NextApiRequest,
-  res: NextApiResponse<DatesType[]>
+  res: NextApiResponse<GuardDatesType[]>
 ) {
-  return res.status(200).json(dates);
+  return res.status(200).json(guardDates);
 }

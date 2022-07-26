@@ -1,84 +1,59 @@
-import { useState } from 'react';
-import {
-  ClockIcon,
-  LocationMarkerIcon,
-  PhoneIcon,
-} from '@heroicons/react/outline';
+import dynamic from 'next/dynamic';
+import config from '@pod/config';
 
-import useInterval from '../hooks/useInterval';
+const DynamicMap = dynamic(() => import('../components/map'), {
+  ssr: false,
+});
+
 import PharmacyCard from '../components/pharmacyCard';
+import Title from '../components/title';
 
-const DAYS = [
-  'Lunes',
-  'Martes',
-  'Miércoles',
-  'Jueves',
-  'Viernes',
-  'Sábado',
-  'Domingo',
-];
-
-const TIMERS = {
-  ONE_SECOND: 1000,
-};
-
-const useDate = () => {
-  const [date, setDate] = useState<Date>(new Date());
-
-  useInterval(() => {
-    setDate(new Date());
-  }, TIMERS.ONE_SECOND);
-
-  return date;
-};
+import useDate from '../hooks/useDate';
+import { formatDate } from '../date-utils';
 
 interface PageHomeProps {
+  guardDates: GuardDatesType[];
   pharmacies: PharmaciesType[];
 }
 
-export default function PageHome({ pharmacies }: PageHomeProps) {
+export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
   const currentDate = useDate();
 
+  const pharmacyOnGuardIds = guardDates.find(
+    ({ date }) => date === formatDate(currentDate)
+  )?.ids;
+
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold mb-6 ">
-        Hoy{' '}
-        {currentDate.toLocaleString('es-ES', {
-          day: 'numeric',
-          second: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-          month: 'long',
-          weekday: 'long',
-          year: 'numeric',
-        })}{' '}
-        h.
-      </h1>
-      <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {pharmacies.map(({ id, ...props }) => (
-          <li key={id}>
-            <PharmacyCard id={id} currentDate={currentDate} {...props} />
-          </li>
-        ))}
-      </ul>
+    <div className="flex min-h-screen">
+      <div className="p-8 w-full max-w-content">
+        <Title currentDate={currentDate} />
+        <ul className="grid gap-6 md:grid-cols-2">
+          {pharmacies.map(({ id, ...props }) => (
+            <li key={id}>
+              <PharmacyCard
+                id={id}
+                isOnGuard={pharmacyOnGuardIds?.includes(id)}
+                currentDate={currentDate}
+                {...props}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="flex-1 sticky h-screen top-0">
+        <DynamicMap pharmacies={pharmacies} />
+      </div>
     </div>
   );
 }
 
 export const getServerSideProps = async () => {
-  const apiUrl =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : 'https://pharmacies-on-duty.vercel.app';
+  const { apiUrl } = config;
 
-  const [pharmacies, dates] = await Promise.all([
+  const [pharmacies, guardDates] = await Promise.all([
     await fetch(`${apiUrl}/api/pharmacies`),
     await fetch(`${apiUrl}/api/dates`),
-  ]).then(async (response) => {
-    const responseMap = response.map(async (data) => await data.json());
-    const result = await Promise.all(responseMap);
-    return result;
-  });
+  ]).then((responses) => Promise.all(responses.map((r) => r.json())));
 
-  return { props: { pharmacies, dates } };
+  return { props: { pharmacies, guardDates } };
 };

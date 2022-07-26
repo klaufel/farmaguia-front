@@ -1,61 +1,113 @@
+import { useState } from 'react';
+import cx from 'classnames';
 import {
+  ChevronDownIcon,
+  ChevronUpIcon,
   ClockIcon,
   LocationMarkerIcon,
   PhoneIcon,
 } from '@heroicons/react/outline';
 
+import PharmacySchedule from '../pharmacySchedule';
+
+import { formatDate } from '../../date-utils';
+
 interface PharmacyCardProps extends PharmaciesType {
+  isOnGuard?: boolean;
   currentDate: Date;
 }
 
-const getIsOpen = ({
-  startDate,
-  endDate,
-}: {
-  startDate: string;
-  endDate: string;
-}) => {
-  const current = new Date().getTime();
-  const x = new Date(`07/26/2022 ${startDate}:00`).getTime();
-  const y = new Date(`07/26/2022 ${endDate}:00`).getTime();
+const getIsOpen = (startDate: string, endDate: string) => {
+  const date = new Date();
+  const current = date.getTime();
+
+  const dateFormat = formatDate(date, 'mm/dd/yyyy');
+
+  const x = new Date(`${dateFormat} ${startDate}:00`).getTime();
+  const y = new Date(`${dateFormat} ${endDate}:00`).getTime();
 
   return (Math.min(x, y) <= current && Math.max(x, y) >= current) || false;
 };
 
 export default function PharmacyCard({
+  isOnGuard,
   address,
   currentDate,
   hours,
   name,
+  map,
   phone,
 }: PharmacyCardProps) {
+  const { url } = map;
+
+  const [showShedule, setShowShedule] = useState(false);
   const currentDay = currentDate.getDay() - 1;
 
   const nextDay = hours[currentDay + 1];
-  const [openHourNextDay] = hours[currentDay][1] || nextDay[0];
+  const [openHourNextDay] = hours[currentDay + 1][0] || nextDay[0];
 
-  const startDate = hours[currentDay][0][0];
-  const endDate = hours[currentDay][0][1];
-  const isOpen = getIsOpen({ startDate, endDate });
+  const isOpen = hours[currentDay].reduce(
+    (acc, [x, y]) => getIsOpen(x, y) || acc,
+    false
+  );
 
   return (
-    <div className="bg-white p-6 shadow-xl rounded-xl text-gray-600">
-      <h3 className="text-2xl text-gray-900  mb-2 ">{name}</h3>
-      <span className="flex items-center">
-        <PhoneIcon className="w-4 mr-1" /> {phone}
-      </span>
-      <span className="flex items-center">
-        <LocationMarkerIcon className="w-4 mr-1" /> {address}
-      </span>
-      <div className="flex mt-2 mb-2">
-        <ClockIcon className="w-4 mr-1" />
-        {hours[currentDay]
-          .map(([init, end]) => `${init}h a ${end}h`)
-          .join(' - ')}
+    <div
+      className={cx(
+        'bg-white p-6 shadow-lg rounded-xl text-gray-500',
+        isOnGuard && 'bg-green-50'
+      )}
+    >
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-2xl font-semibold text-gray-800">{name}</h3>
+        <div>
+          <a
+            className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-gray-500 bg-gray-100 ml-2"
+            href={`tel:${phone.replace(/ /g, '')}`}
+            rel="noreferrer noopener"
+          >
+            Llamar
+          </a>
+          <a
+            className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-gray-500 bg-gray-100 ml-2"
+            href={url}
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            Mapa
+          </a>
+        </div>
       </div>
-      {isOpen ? (
+      <span className="flex items-center">
+        <PhoneIcon className="w-4 mr-2" />
+        {phone}
+      </span>
+      <span className="mt-1 flex items-center">
+        <LocationMarkerIcon className="w-4 mr-2" />
+        {address}{' '}
+      </span>
+      <div className="mt-1 mb-2">
+        <div
+          className="inline-flex cursor-pointer"
+          onClick={() => setShowShedule(!showShedule)}
+        >
+          <ClockIcon className="w-4 mr-2" />
+          {hours[currentDay].map(([x, y]) => `${x} - ${y}`).join(', ')}
+          {showShedule ? (
+            <ChevronUpIcon className="w-4 ml-1" />
+          ) : (
+            <ChevronDownIcon className="w-4 ml-1" />
+          )}
+        </div>
+        {showShedule && (
+          <div className="pl-6 pt-2 pb-4">
+            <PharmacySchedule hours={hours} />
+          </div>
+        )}
+      </div>
+      {isOnGuard || isOpen ? (
         <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-green-600 bg-green-200 last:mr-0 mr-1">
-          Abierta
+          Abierta {isOnGuard && `, de Guardia`}
         </span>
       ) : (
         <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-red-600 bg-red-200 last:mr-0 mr-1">

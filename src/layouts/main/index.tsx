@@ -5,5 +5,5 @@ interface LayoutMainProps {
 }
 
 export default function LayoutMain({ children }: LayoutMainProps) {
-  return <main className="p-6">{children}</main>;
+  return <main>{children}</main>;
 }

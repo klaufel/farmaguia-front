@@ -1,4 +1,4 @@
-type DatesType = {
+type GuardDatesType = {
   date: string;
-  id: string;
+  ids: string[];
 };
