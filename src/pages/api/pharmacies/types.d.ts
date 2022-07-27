@@ -1,5 +1,7 @@
 type PharmaciesType = {
   address: string;
+  city: string;
+  email?: string;
   id: string;
   map: {
     url: string;

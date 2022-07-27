@@ -38,8 +38,6 @@ export default function PharmacyCard({
   map,
   phone,
 }: PharmacyCardProps) {
-  const { url } = map;
-
   const [showShedule, setShowShedule] = useState(false);
   const currentDay = currentDate.getDay() - 1;
 
@@ -59,34 +57,24 @@ export default function PharmacyCard({
       )}
     >
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-2xl font-semibold text-gray-800">{name}</h3>
-        <div>
-          <a
-            className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-gray-500 bg-gray-100 ml-2"
-            href={`tel:${phone.replace(/ /g, '')}`}
-            rel="noreferrer noopener"
-          >
-            Llamar
-          </a>
-          <a
-            className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-gray-500 bg-gray-100 ml-2"
-            href={url}
-            rel="noreferrer noopener"
-            target="_blank"
-          >
-            Mapa
-          </a>
-        </div>
+        <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
       </div>
-      <span className="flex items-center">
+      <span className="text-sm flex items-center">
         <PhoneIcon className="w-4 mr-2" />
         {phone}
+        <a
+          className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-gray-500 bg-gray-100 ml-2"
+          href={`tel:${phone.replace(/ /g, '')}`}
+          rel="noreferrer noopener"
+        >
+          Llamar
+        </a>
       </span>
-      <span className="mt-1 flex items-center">
+      <span className="text-sm mt-1 flex items-center">
         <LocationMarkerIcon className="w-4 mr-2" />
-        {address}{' '}
+        {address}
       </span>
-      <div className="mt-1 mb-2">
+      <div className="text-sm mt-1 mb-2">
         <div
           className="inline-flex cursor-pointer"
           onClick={() => setShowShedule(!showShedule)}

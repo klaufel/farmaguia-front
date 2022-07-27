@@ -1,4 +1,6 @@
 import dynamic from 'next/dynamic';
+import { useState } from 'react';
+import cx from 'classnames';
 import config from '@pod/config';
 
 const DynamicMap = dynamic(() => import('../components/map'), {
@@ -17,6 +19,7 @@ interface PageHomeProps {
 }
 
 export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
+  const [isFullMap, setIsFullMap] = useState(false);
   const currentDate = useDate();
 
   const pharmacyOnGuardIds = guardDates.find(
@@ -25,7 +28,9 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
 
   return (
     <div className="flex min-h-screen">
-      <div className="p-8 w-full max-w-content">
+      <div
+        className={cx('p-6 w-full max-w-content none', isFullMap && 'hidden')}
+      >
         <Title currentDate={currentDate} />
         <ul className="grid gap-6 md:grid-cols-2">
           {pharmacies.map(({ id, ...props }) => (
@@ -41,6 +46,13 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
         </ul>
       </div>
       <div className="flex-1 sticky h-screen top-0">
+        <button
+          className="rounded-full absolute top-20 left-0"
+          style={{ zIndex: 9999 }}
+          onClick={() => setIsFullMap(!isFullMap)}
+        >
+          full
+        </button>
         <DynamicMap pharmacies={pharmacies} />
       </div>
     </div>
