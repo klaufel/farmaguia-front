@@ -19,7 +19,7 @@ export default function PharmacySchedule({ hours }: PharmacyScheduleProps) {
 
         return (
           <li key={day} className={cx('flex', isCurrentDay && 'font-bold')}>
-            <h4 className="mr-2 w-20">{DAYS[day]}</h4>
+            <h4 className="mr-1 w-20">{DAYS[day]}</h4>
             <p>{shedule || 'Cerrado'}</p>
           </li>
         );

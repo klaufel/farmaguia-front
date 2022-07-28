@@ -52,31 +52,33 @@ export default function PharmacyCard({
   return (
     <div
       className={cx(
-        'bg-white p-6 shadow-lg rounded-xl text-gray-500',
+        'bg-white p-4 sm:p-6 shadow-lg rounded-xl text-gray-500',
         isOnGuard && 'bg-green-50'
       )}
     >
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-800">
+          {name}
+        </h3>
       </div>
-      <span className="text-sm flex text-gray-500 items-center">
+      <span className="text-sm flex items-center">
         <PhoneIcon className="w-4 mr-2" />
         {phone}
         <a
-          className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-gray-500 bg-gray-100 ml-2"
+          className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-gray-100 ml-2"
           href={`tel:${phone.replace(/ /g, '')}`}
           rel="noreferrer noopener"
         >
           Llamar
         </a>
       </span>
-      <span className="text-sm text-gray-500 mt-1 flex items-center">
+      <span className="text-sm mt-1 flex items-center">
         <LocationMarkerIcon className="w-4 mr-2" />
         {address}
       </span>
       <div className="text-sm mt-1 mb-2">
         <div
-          className="inline-flex text-gray-500 cursor-pointer"
+          className="inline-flex items-center cursor-pointer"
           onClick={() => setShowShedule(!showShedule)}
         >
           <ClockIcon className="w-4 mr-2" />
@@ -88,7 +90,7 @@ export default function PharmacyCard({
           )}
         </div>
         {showShedule && (
-          <div className="pl-6 pt-2 pb-4">
+          <div className="pl-6 pt-2 pb-2">
             <PharmacySchedule hours={hours} />
           </div>
         )}
@@ -99,7 +101,7 @@ export default function PharmacyCard({
         </span>
       ) : (
         <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-red-600 bg-red-200 last:mr-0 mr-1">
-          Cerrada {openHourNextDay && `, abre a las ${openHourNextDay}h`}
+          Cerrada {openHourNextDay && `, abre a las ${openHourNextDay}`}
         </span>
       )}
     </div>
