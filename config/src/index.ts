@@ -1,7 +1,7 @@
 const apiUrl =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'https://pharmacies-on-duty.vercel.app';
+    : process.env.VERCEL_URL;
 
 const config = {
   apiUrl,
