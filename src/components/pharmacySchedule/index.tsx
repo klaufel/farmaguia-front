@@ -18,7 +18,7 @@ export default function PharmacySchedule({ schedule }: PharmacyScheduleProps) {
         const schedule = hour.map(([x, y]) => `${x} - ${y}`).join(', ');
 
         return (
-          <li key={day} className={cx('flex', isCurrentDay && 'font-bold')}>
+          <li key={day} className={cx('flex', isCurrentDay && 'font-semibold')}>
             <h4 className="mr-1 w-20">{DAYS[day]}</h4>
             <p>{schedule || 'Cerrado'}</p>
           </li>

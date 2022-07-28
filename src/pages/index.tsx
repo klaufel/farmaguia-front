@@ -25,7 +25,7 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
   )?.ids;
 
   return (
-    <div className="flex min-h-screen">
+    <>
       <Head>
         <title>Farmacias de guardia en Jumilla - Murcia</title>
         <meta
@@ -33,25 +33,27 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
           content="Podrás comprobar qué farmacia de guardia está abierta en Jumilla, Murcia. También verás los horarios, teléfono y encontrar de todas las farmacias de Jumilla."
         />
       </Head>
-      <div className="p-6 w-full max-w-content">
-        <Title currentDate={currentDate} />
-        <ul className="grid gap-6 md:grid-cols-2">
-          {pharmacies.map(({ id, ...props }) => (
-            <li key={id}>
-              <PharmacyCard
-                id={id}
-                isOnGuard={pharmacyOnGuardIds?.includes(id)}
-                currentDate={currentDate}
-                {...props}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-      {/* <div className="flex-1 sticky h-screen top-0">
+      <Title currentDate={currentDate} />
+      <div className="flex min-h-screen">
+        <div className="p-6 w-full max-w-content">
+          <ul className="grid gap-6 md:grid-cols-2">
+            {pharmacies.map(({ id, ...props }) => (
+              <li key={id}>
+                <PharmacyCard
+                  id={id}
+                  isOnGuard={pharmacyOnGuardIds?.includes(id)}
+                  currentDate={currentDate}
+                  {...props}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* <div className="flex-1 sticky h-screen top-0">
         <DynamicMap pharmacies={pharmacies} />
       </div> */}
-    </div>
+      </div>
+    </>
   );
 }
 
