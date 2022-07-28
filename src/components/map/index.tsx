@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { divIcon } from 'leaflet';
+import { divIcon, latLngBound } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import { LocationMarkerIcon } from '@heroicons/react/outline';
@@ -27,11 +27,19 @@ export default function Map({ pharmacies }: MapProps) {
   const scheme = 'normal.day';
   const tileType = 'maptile';
 
+  const bounds: [number, number][] = [];
+
+  pharmacies.map(({ map }) => {
+    const { lat, lng } = map;
+    bounds.push([lat, lng]);
+  });
+
   return (
     <MapContainer
       center={[38.4771946, -1.32498899]}
       zoom={16}
       scrollWheelZoom
+      bounds={bounds}
       className="w-full h-full"
     >
       <TileLayer

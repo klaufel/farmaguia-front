@@ -4,7 +4,7 @@ export const pharmacies = [
     name: 'Manuel Guillén',
     phone: '968 78 01 65',
     web: 'https://www.farmaciaguillen.com/',
-    address: 'C/ Cánovas del Castillo, 22, 30520 Jumilla, Murcia',
+    address: 'C/ Cánovas del Castillo, 22',
     map: {
       url: 'https://www.google.es/maps/place/Calle+C%C3%A1novas+del+Castillo,+22,+30520+Jumilla,+Murcia/@38.4744537,-1.3322219,17z/data=!3m1!4b1!4m5!3m4!1s0xd640f81a9f6251f:0xdc33b26fe3ba8a9d!8m2!3d38.4744537!4d-1.3300332',
       lat: 38.474454,
@@ -40,7 +40,7 @@ export const pharmacies = [
     name: 'Miguel Cambronero',
     phone: '968 78 28 12',
     web: '',
-    address: 'C/ Ortega y Gasset, 36, 30520 Jumilla, Murcia',
+    address: 'C/ Ortega y Gasset, 36',
     map: {
       url: 'https://www.google.es/maps/place/Calle+Ortega+y+Gasset,+36,+30520+Jumilla,+Murcia/@38.4785385,-1.3205845,17z/data=!3m1!4b1!4m5!3m4!1s0xd640587e43f3627:0x8ebe7cade755115f!8m2!3d38.4785385!4d-1.3183958',
       lat: 38.478538,
@@ -76,7 +76,7 @@ export const pharmacies = [
     name: 'Pedro Soriano',
     phone: '968 78 00 05',
     web: '',
-    address: 'Plaza de la glorieta, 9, 30520 Jumilla, Murcia',
+    address: 'Plaza de la glorieta, 9',
     map: {
       url: 'https://www.google.es/maps/place/Plaza+de+la+Glorieta,+9,+30520+Jumilla,+Murcia/data=!4m2!3m1!1s0xd640f7f05971ac9:0xf94be7e63ab83a30?sa=X&ved=0ahUKEwi5p9SNmP3aAhXD7RQKHVqOCzwQ8gEIJzAA',
       lat: 38.474446,
@@ -112,7 +112,7 @@ export const pharmacies = [
     name: 'Aurora Azorín',
     phone: '968 78 01 30',
     web: '',
-    address: 'C/ Cánovas del Castillo, 50, 30520 Jumilla, Murcia',
+    address: 'C/ Cánovas del Castillo, 50',
     map: {
       url: 'https://www.google.es/maps/place/Calle+C%C3%A1novas+del+Castillo,+50,+30520+Jumilla,+Murcia/@38.4746148,-1.3307923,17z/data=!3m1!4b1!4m5!3m4!1s0xd640f81cbefbaeb:0xb04cd0ecbc2fddcc!8m2!3d38.4746148!4d-1.3286036',
       lat: 38.474615,
@@ -148,7 +148,7 @@ export const pharmacies = [
     name: 'Diego Soriano',
     phone: '968 78 25 08',
     web: '',
-    address: 'C/ Cánovas del Castillo, 109, 30520 Jumilla, Murcia',
+    address: 'C/ Cánovas del Castillo, 109',
     map: {
       url: 'https://www.google.es/maps/place/Calle+C%C3%A1novas+del+Castillo,+109,+30520+Jumilla,+Murcia/@38.4761552,-1.3254954,17z/data=!3m1!4b1!4m5!3m4!1s0xd640f7ddfea34f5:0x1222ee3a747c60de!8m2!3d38.4761552!4d-1.3233067',
       lat: 38.476155,
@@ -184,7 +184,7 @@ export const pharmacies = [
     name: 'Manuel Mazuelas',
     phone: '968 78 23 15',
     web: '',
-    address: 'C/ Barón del Solar, 20, 30520 Jumilla, Murcia',
+    address: 'C/ Barón del Solar, 20',
     map: {
       url: 'https://www.google.es/maps/place/Calle+Bar%C3%B3n+del+Solar,+20,+30528+Jumilla,+Murcia/@38.47395,-1.3348587,17z/data=!3m1!4b1!4m5!3m4!1s0xd640f86cc4606bf:0x410d269bf8e33489!8m2!3d38.47395!4d-1.33267',
       lat: 38.473864,
@@ -220,7 +220,7 @@ export const pharmacies = [
     name: 'Alberto Agulló',
     phone: '968 78 00 88',
     web: '',
-    address: 'C/ Canalejas, 38, 30520 Jumilla, Murcia',
+    address: 'C/ Canalejas, 38',
     map: {
       url: 'https://www.google.es/maps/place/Calle+Canalejas,+38,+30520+Jumilla,+Murcia/@38.47395,-1.3348587,17z/data=!4m5!3m4!1s0xd640f8040d20339:0x4e7331527d3b7432!8m2!3d38.4758463!4d-1.3290046',
       lat: 38.475846,

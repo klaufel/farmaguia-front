@@ -59,7 +59,7 @@ export default function PharmacyCard({
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
       </div>
-      <span className="text-sm flex items-center">
+      <span className="text-sm flex text-gray-500 items-center">
         <PhoneIcon className="w-4 mr-2" />
         {phone}
         <a
@@ -70,13 +70,13 @@ export default function PharmacyCard({
           Llamar
         </a>
       </span>
-      <span className="text-sm mt-1 flex items-center">
+      <span className="text-sm text-gray-500 mt-1 flex items-center">
         <LocationMarkerIcon className="w-4 mr-2" />
         {address}
       </span>
       <div className="text-sm mt-1 mb-2">
         <div
-          className="inline-flex cursor-pointer"
+          className="inline-flex text-gray-500 cursor-pointer"
           onClick={() => setShowShedule(!showShedule)}
         >
           <ClockIcon className="w-4 mr-2" />
