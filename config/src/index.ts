@@ -1,7 +1,9 @@
+const { NODE_ENV, VERCEL_URL } = process.env;
+
 const apiUrl =
-  process.env.NODE_ENV === 'development'
+  NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : process.env.VERCEL_URL;
+    : `https://${VERCEL_URL}`;
 
 const config = {
   apiUrl,
