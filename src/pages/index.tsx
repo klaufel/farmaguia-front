@@ -34,7 +34,7 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
         />
       </Head>
       <Title currentDate={currentDate} />
-      <div className="flex min-h-screen">
+      <div className="flex " style={{ minHeight: 'calc(100vh - 6rem)' }}>
         <div className="p-6 w-full max-w-content">
           <ul className="grid gap-6 md:grid-cols-2">
             {pharmacies.map(({ id, ...props }) => (
@@ -49,9 +49,16 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
             ))}
           </ul>
         </div>
-        {/* <div className="flex-1 sticky h-screen top-0">
-        <DynamicMap pharmacies={pharmacies} />
-      </div> */}
+        <div
+          className="flex-1 sticky"
+          style={{ top: '6rem', height: 'calc(100vh - 6rem)' }}
+        >
+          <DynamicMap
+            pharmacies={pharmacies}
+            currentDate={currentDate}
+            pharmacyOnGuardIds={pharmacyOnGuardIds}
+          />
+        </div>
       </div>
     </>
   );

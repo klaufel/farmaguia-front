@@ -18,6 +18,7 @@ const PharmacyLabel = dynamic(() => import('../pharmacyLabel'));
 interface PharmacyCardProps extends PharmaciesType {
   isOnGuard?: boolean;
   currentDate: Date;
+  isPopup?: boolean;
 }
 
 const getIsOpen = (startDate: string, endDate: string) => {
@@ -41,6 +42,7 @@ export default function PharmacyCard({
   address,
   currentDate,
   schedule,
+  isPopup,
   name,
   phone,
 }: PharmacyCardProps) {
@@ -55,8 +57,9 @@ export default function PharmacyCard({
   return (
     <div
       className={cx(
-        'bg-white p-4 sm:p-6 shadow-lg rounded-xl text-gray-500',
-        isOnGuard && 'bg-green-50'
+        'bg-white p-4 sm:p-6 shadow-card rounded-xl text-gray-500',
+        isOnGuard && 'bg-green-50',
+        isPopup && 'shadow-none p-0 sm:p-0'
       )}
     >
       <div className="flex items-center justify-between mb-3">
@@ -82,17 +85,18 @@ export default function PharmacyCard({
       <div className="text-sm mt-1 mb-2">
         <div
           className="inline-flex items-center cursor-pointer"
-          onClick={() => setShowShedule(!showShedule)}
+          onClick={() => !isPopup && setShowShedule(!showShedule)}
         >
           <ClockIcon className="w-4 mr-2" />
           {schedule[currentDay].map(([x, y]) => `${x} - ${y}`).join(', ')}
-          {showShedule ? (
-            <ChevronUpIcon className="w-4 ml-1" />
-          ) : (
-            <ChevronDownIcon className="w-4 ml-1" />
-          )}
+          {!isPopup &&
+            (showShedule ? (
+              <ChevronUpIcon className="w-4 ml-1" />
+            ) : (
+              <ChevronDownIcon className="w-4 ml-1" />
+            ))}
         </div>
-        {showShedule && (
+        {!isPopup && showShedule && (
           <div className="pl-6 pt-2 pb-2">
             <PharmacySchedule schedule={schedule} />
           </div>

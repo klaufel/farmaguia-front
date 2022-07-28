@@ -1,8 +1,10 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { divIcon, latLngBound } from 'leaflet';
+import { divIcon } from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import { LocationMarkerIcon } from '@heroicons/react/outline';
+
+import PharmacyCard from '../pharmacyCard';
 
 const customMarkerIcon = divIcon({
   html: renderToStaticMarkup(
@@ -12,13 +14,19 @@ const customMarkerIcon = divIcon({
   ),
 });
 
-// import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 
 interface MapProps {
+  currentDate: Date;
   pharmacies: PharmaciesType[];
+  pharmacyOnGuardIds?: string[];
 }
 
-export default function Map({ pharmacies }: MapProps) {
+export default function Map({
+  currentDate,
+  pharmacies,
+  pharmacyOnGuardIds,
+}: MapProps) {
   const appId = 'IAOpWtaJ1MqilFQE43z2';
   const appCode = 'Yc6BorxizRSjZ6EdzJllmA';
   const apiKey = 'muj8iFFOls6-UBh09fOEEI3GS3re61j0FaFhHfI9J4c';
@@ -29,8 +37,8 @@ export default function Map({ pharmacies }: MapProps) {
 
   const bounds: [number, number][] = [];
 
-  pharmacies.map(({ map }) => {
-    const { lat, lng } = map;
+  pharmacies.map(({ coordinates }) => {
+    const [lat, lng] = coordinates;
     bounds.push([lat, lng]);
   });
 
@@ -47,12 +55,21 @@ export default function Map({ pharmacies }: MapProps) {
         url={`https://2.${base}.maps.ls.hereapi.com/maptile/2.1/${tileType}/newest/${scheme}/{z}/{x}/{y}/512/png8?app_id=${appId}&app_code=${appCode}&apiKey=${apiKey}&lg=${language}`}
       />
 
-      {pharmacies.map(({ id, map, name }) => {
-        const { lat, lng } = map;
+      {pharmacies.map(({ id, coordinates, ...props }) => {
+        const [lat, lng] = coordinates;
 
         return (
           <Marker key={id} position={[lat, lng]} icon={customMarkerIcon}>
-            <Popup>{name}</Popup>
+            <Popup>
+              <PharmacyCard
+                isPopup
+                id={id}
+                coordinates={coordinates}
+                isOnGuard={pharmacyOnGuardIds?.includes(id)}
+                currentDate={currentDate}
+                {...props}
+              />
+            </Popup>
           </Marker>
         );
       })}

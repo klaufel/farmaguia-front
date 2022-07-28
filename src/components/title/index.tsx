@@ -19,7 +19,7 @@ const Logo = () => (
 
 export default function Title({ currentDate }: TitleProps) {
   return (
-    <div className="px-6 py-4 w-full sticky top-0 left-0 border-b bg-white border-gray-200 flex items-center">
+    <div className="h-24 px-6 py-4 w-full sticky top-0 left-0 border-b bg-white border-gray-200 flex items-center">
       <Logo />
       <div className="ml-6">
         <h1 className="text-xl md:text-2xl mb-1 font-semibold">

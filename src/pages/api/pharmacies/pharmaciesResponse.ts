@@ -8,7 +8,7 @@ export const pharmaciesResponse = [
     city: 'Jumilla',
     province: 'Murcia',
     zipCode: '30520',
-    coordinates: [39.911284, -1.8098],
+    coordinates: [38.474454, -1.330033],
     email: 'farmaciaguillen@gmail.com',
     sanitaryAuth: 'MU-103F',
     social: {
@@ -52,7 +52,7 @@ export const pharmaciesResponse = [
     city: 'Jumilla',
     province: 'Murcia',
     zipCode: '30520',
-    coordinates: [41.3903651, 2.1941609],
+    coordinates: [38.478538, -1.318396],
     email: 'farmaciasanjuanjumilla@gmail.com',
     sanitaryAuth: '',
     social: {
@@ -96,7 +96,7 @@ export const pharmaciesResponse = [
     city: 'Jumilla',
     province: 'Murcia',
     zipCode: '30520',
-    coordinates: [38.4743453, -1.3279401],
+    coordinates: [38.474446, -1.325781],
     email: '',
     sanitaryAuth: '',
     social: {
@@ -125,7 +125,7 @@ export const pharmaciesResponse = [
     city: 'Jumilla',
     province: 'Murcia',
     zipCode: '30520',
-    coordinates: [39.7977217, -2.0681879],
+    coordinates: [38.474615, -1.328604],
     email: 'farmaciaazorincb@gmail.com',
     sanitaryAuth: '',
     social: {
@@ -169,7 +169,7 @@ export const pharmaciesResponse = [
     city: 'Jumilla',
     province: 'Murcia',
     zipCode: '30520',
-    coordinates: [39.7977217, -2.0681879],
+    coordinates: [38.476155, -1.323307],
     email: '',
     sanitaryAuth: '',
     social: {
@@ -213,7 +213,7 @@ export const pharmaciesResponse = [
     city: 'Jumilla',
     province: 'Murcia',
     zipCode: '30520',
-    coordinates: [39.7977217, -2.0681879],
+    coordinates: [38.473864, -1.332654],
     email: 'farmaciamazuelascb@gmail.com',
     sanitaryAuth: '',
     social: {
@@ -257,7 +257,7 @@ export const pharmaciesResponse = [
     city: 'Jumilla',
     province: 'Murcia',
     zipCode: '30520',
-    coordinates: [39.7977217, -2.0681879],
+    coordinates: [38.475846, -1.329005],
     email: '',
     sanitaryAuth: '',
     social: {
@@ -286,7 +286,7 @@ export const pharmaciesResponse = [
     city: 'Jumilla',
     province: 'Murcia',
     zipCode: '30520',
-    coordinates: [39.7977217, -2.0681879],
+    coordinates: [38.48045932268097, -1.3226227093942184],
     email: '',
     sanitaryAuth: '',
     social: {
