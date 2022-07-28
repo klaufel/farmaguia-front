@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import cx from 'classnames';
+import dynamic from 'next/dynamic';
 import {
   ChevronDownIcon,
   ChevronUpIcon,
@@ -8,9 +9,11 @@ import {
   PhoneIcon,
 } from '@heroicons/react/outline';
 
-import PharmacySchedule from '../pharmacySchedule';
-
 import { formatDate } from '../../date-utils';
+
+const PharmacySchedule = dynamic(() => import('../pharmacySchedule'));
+
+const PharmacyLabel = dynamic(() => import('../pharmacyLabel'));
 
 interface PharmacyCardProps extends PharmaciesType {
   isOnGuard?: boolean;
@@ -29,6 +32,10 @@ const getIsOpen = (startDate: string, endDate: string) => {
   return (Math.min(x, y) <= current && Math.max(x, y) >= current) || false;
 };
 
+const i18n = {
+  phone: (str: string) => str.match(/.{1,3}/g)?.join(' '),
+};
+
 export default function PharmacyCard({
   isOnGuard,
   address,
@@ -45,9 +52,6 @@ export default function PharmacyCard({
     false
   );
 
-  const nextDay = schedule[currentDay + 1];
-  const openHourNextDay = schedule[currentDay + 1][0][1] || nextDay[0][0];
-
   return (
     <div
       className={cx(
@@ -62,7 +66,7 @@ export default function PharmacyCard({
       </div>
       <span className="text-sm flex items-center">
         <PhoneIcon className="w-4 mr-2" />
-        {phone}
+        {i18n.phone(phone)}
         <a
           className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-gray-100 ml-2"
           href={`tel:${phone.replace(/ /g, '')}`}
@@ -94,15 +98,12 @@ export default function PharmacyCard({
           </div>
         )}
       </div>
-      {isOnGuard || isOpen ? (
-        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-green-600 bg-green-200 last:mr-0 mr-1">
-          Abierta {isOnGuard && `, de Guardia`}
-        </span>
-      ) : (
-        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-red-600 bg-red-200 last:mr-0 mr-1">
-          Cerrada {openHourNextDay && `, abre a las ${openHourNextDay}`}
-        </span>
-      )}
+      <PharmacyLabel
+        currentDate={currentDate}
+        isOnGuard={isOnGuard}
+        isOpen={isOpen}
+        schedule={schedule}
+      />
     </div>
   );
 }

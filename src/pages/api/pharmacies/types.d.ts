@@ -17,5 +17,7 @@ type PharmaciesType = {
     web: string;
     youtube: string;
   };
-  schedule: [string[]][];
+  schedule: PharmacyShedule;
 };
+
+type PharmacyShedule = [string[]][];
