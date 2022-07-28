@@ -2,10 +2,10 @@ import cx from 'classnames';
 import config from '@pod/config';
 
 interface PharmacyScheduleProps {
-  hours: string[][][];
+  schedule: string[][][];
 }
 
-export default function PharmacySchedule({ hours }: PharmacyScheduleProps) {
+export default function PharmacySchedule({ schedule }: PharmacyScheduleProps) {
   const { WEEK } = config;
   const { DAYS } = WEEK;
 
@@ -13,14 +13,14 @@ export default function PharmacySchedule({ hours }: PharmacyScheduleProps) {
 
   return (
     <ul className="text-md text-gray-600">
-      {hours.map((hour, day) => {
+      {schedule.map((hour, day) => {
         const isCurrentDay = currentDay === day;
-        const shedule = hour.map(([x, y]) => `${x} - ${y}`).join(', ');
+        const schedule = hour.map(([x, y]) => `${x} - ${y}`).join(', ');
 
         return (
           <li key={day} className={cx('flex', isCurrentDay && 'font-bold')}>
             <h4 className="mr-1 w-20">{DAYS[day]}</h4>
-            <p>{shedule || 'Cerrado'}</p>
+            <p>{schedule || 'Cerrado'}</p>
           </li>
         );
       })}

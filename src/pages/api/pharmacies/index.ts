@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { pharmacies } from './response';
+import { pharmaciesResponse } from './pharmaciesResponse';
 
 export default function apiPharmacies(
   _req: NextApiRequest,
-  res: NextApiResponse<PharmaciesType[]>
+  res: NextApiResponse
 ) {
-  return res.status(200).json(pharmacies);
+  return res.status(200).json(pharmaciesResponse);
 }

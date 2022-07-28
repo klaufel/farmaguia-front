@@ -12,7 +12,7 @@ const customMarkerIcon = divIcon({
   ),
 });
 
-import 'leaflet/dist/leaflet.css';
+// import 'leaflet/dist/leaflet.css';
 
 interface MapProps {
   pharmacies: PharmaciesType[];

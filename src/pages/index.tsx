@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import config from '@pod/config';
 
 const DynamicMap = dynamic(() => import('../components/map'), {
@@ -25,6 +26,13 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
 
   return (
     <div className="flex min-h-screen">
+      <Head>
+        <title>Farmacias de guardia en Jumilla - Murcia</title>
+        <meta
+          name="description"
+          content="Podrás comprobar qué farmacia de guardia está abierta en Jumilla, Murcia. También verás los horarios, teléfono y encontrar de todas las farmacias de Jumilla."
+        />
+      </Head>
       <div className="p-6 w-full max-w-content">
         <Title currentDate={currentDate} />
         <ul className="grid gap-6 md:grid-cols-2">

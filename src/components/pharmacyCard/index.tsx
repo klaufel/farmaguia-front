@@ -33,21 +33,20 @@ export default function PharmacyCard({
   isOnGuard,
   address,
   currentDate,
-  hours,
+  schedule,
   name,
-  map,
   phone,
 }: PharmacyCardProps) {
   const [showShedule, setShowShedule] = useState(false);
   const currentDay = currentDate.getDay() - 1;
 
-  const nextDay = hours[currentDay + 1];
-  const [openHourNextDay] = hours[currentDay + 1][0] || nextDay[0];
-
-  const isOpen = hours[currentDay].reduce(
+  const isOpen = schedule[currentDay].reduce(
     (acc, [x, y]) => getIsOpen(x, y) || acc,
     false
   );
+
+  const nextDay = schedule[currentDay + 1];
+  const openHourNextDay = schedule[currentDay + 1][0][1] || nextDay[0][0];
 
   return (
     <div
@@ -82,7 +81,7 @@ export default function PharmacyCard({
           onClick={() => setShowShedule(!showShedule)}
         >
           <ClockIcon className="w-4 mr-2" />
-          {hours[currentDay].map(([x, y]) => `${x} - ${y}`).join(', ')}
+          {schedule[currentDay].map(([x, y]) => `${x} - ${y}`).join(', ')}
           {showShedule ? (
             <ChevronUpIcon className="w-4 ml-1" />
           ) : (
@@ -91,7 +90,7 @@ export default function PharmacyCard({
         </div>
         {showShedule && (
           <div className="pl-6 pt-2 pb-2">
-            <PharmacySchedule hours={hours} />
+            <PharmacySchedule schedule={schedule} />
           </div>
         )}
       </div>

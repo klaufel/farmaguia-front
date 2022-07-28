@@ -1,15 +1,21 @@
 type PharmaciesType = {
+  id: string;
+  name: string;
+  pharmacist: string;
+  phone: string;
   address: string;
   city: string;
-  email?: string;
-  id: string;
-  map: {
-    url: string;
-    lat: number;
-    lng: number;
+  province: string;
+  zipCode: string;
+  coordinates: number[];
+  email: string;
+  sanitaryAuth: string;
+  social: {
+    facebook: string;
+    instagram: string;
+    twitter: string;
+    web: string;
+    youtube: string;
   };
-  name: string;
-  phone: string;
-  web: string;
-  hours: string[][][];
+  schedule: [string[]][];
 };
