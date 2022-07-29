@@ -18,6 +18,8 @@ type PharmaciesType = {
     youtube: string;
   };
   schedule: PharmacyShedule;
+  isOnGuard?: boolean;
+  isOpen?: boolean;
 };
 
 type PharmacyShedule = [string[]][];

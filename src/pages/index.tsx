@@ -11,8 +11,7 @@ const Map = dynamic(() => import('../components/map'), {
 import PharmacyCard from '../components/pharmacyCard';
 import Title from '../components/title';
 
-import useDate from '../hooks/useDate';
-import { formatDate } from '../date-utils';
+import usePharmacies from '../hooks/usePharmacies';
 
 interface PageHomeProps {
   guardDates: GuardDatesType[];
@@ -29,11 +28,11 @@ export default function PageHome({
   ubication,
 }: PageHomeProps) {
   const { municipality, province } = ubication;
-  const currentDate = useDate();
 
-  const pharmacyOnGuardIds = guardDates.find(
-    ({ date }) => date === formatDate(currentDate)
-  )?.ids;
+  const { currentDate, pharmaciesList } = usePharmacies({
+    guardDates,
+    pharmacies,
+  });
 
   return (
     <>
@@ -50,14 +49,9 @@ export default function PageHome({
         <div className="px-4 sm:px-6 w-full max-w-content">
           <Title currentDate={currentDate} municipality={municipality} />
           <ul className="grid gap-6 md:grid-cols-2">
-            {pharmacies.map(({ id, ...props }) => (
+            {pharmaciesList?.map(({ id, ...props }) => (
               <li key={id}>
-                <PharmacyCard
-                  id={id}
-                  isOnGuard={pharmacyOnGuardIds?.includes(id)}
-                  currentDate={currentDate}
-                  {...props}
-                />
+                <PharmacyCard id={id} currentDate={currentDate} {...props} />
               </li>
             ))}
           </ul>

@@ -9,8 +9,6 @@ import {
   PhoneIcon,
 } from '@heroicons/react/outline';
 
-import { formatDate } from '../../date-utils';
-
 import PharmacySchedule from '../pharmacySchedule';
 
 const PharmacyLabel = dynamic(() => import('../pharmacyLabel'), {
@@ -19,21 +17,8 @@ const PharmacyLabel = dynamic(() => import('../pharmacyLabel'), {
 });
 
 interface PharmacyCardProps extends PharmaciesType {
-  isOnGuard?: boolean;
   currentDate: Date;
 }
-
-const getIsOpen = (startDate: string, endDate: string) => {
-  const date = new Date();
-  const current = date.getTime();
-
-  const dateFormat = formatDate(date, 'mm/dd/yyyy');
-
-  const x = new Date(`${dateFormat} ${startDate}:00`).getTime();
-  const y = new Date(`${dateFormat} ${endDate}:00`).getTime();
-
-  return (Math.min(x, y) <= current && Math.max(x, y) >= current) || false;
-};
 
 const i18n = {
   phone: (str: string) => str.match(/.{1,3}/g)?.join(' '),
@@ -43,6 +28,7 @@ export default function PharmacyCard({
   address,
   currentDate,
   isOnGuard,
+  isOpen,
   name,
   pharmacist,
   phone,
@@ -50,11 +36,6 @@ export default function PharmacyCard({
 }: PharmacyCardProps) {
   const [showShedule, setShowShedule] = useState(false);
   const currentDay = currentDate.getDay() - 1;
-
-  const isOpen = schedule[currentDay].reduce(
-    (acc, [x, y]) => getIsOpen(x, y) || acc,
-    false
-  );
 
   return (
     <div
