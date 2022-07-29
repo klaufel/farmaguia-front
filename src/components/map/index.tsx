@@ -1,13 +1,16 @@
-import { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, memo } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
 
 import { styles } from './mapStyle';
+
+import MapMarker from './components/marker';
 
 interface MapProps extends google.maps.MapOptions {
   center?: google.maps.LatLngLiteral;
   pharmacies: PharmaciesType[];
   style?: { [key: string]: string };
   zoom?: number;
+  children: any;
 }
 
 // Return map bounds based on list of places
@@ -38,7 +41,7 @@ const getMapMarkers = (pharmacies: PharmaciesType[], map: google.maps.Map) => {
   });
 };
 
-function Map({ center, pharmacies, style, zoom = 3 }: MapProps) {
+function Map({ center, pharmacies, children, style, zoom = 3 }: MapProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
 
@@ -47,10 +50,11 @@ function Map({ center, pharmacies, style, zoom = 3 }: MapProps) {
       setMap(
         new window.google.maps.Map(ref.current, {
           backgroundColor: '#f7f8f9',
-          zoom,
           center,
           disableDefaultUI: true,
+          scrollwheel: true,
           styles,
+          zoom,
         })
       );
     }
@@ -60,11 +64,20 @@ function Map({ center, pharmacies, style, zoom = 3 }: MapProps) {
     if (map) {
       const bounds = getMapBounds(pharmacies);
       map.fitBounds(bounds);
-      getMapMarkers(pharmacies, map);
     }
   }, [map, pharmacies]);
 
-  return <div ref={ref} style={{ width: '100%', height: '100%', ...style }} />;
+  return (
+    <div ref={ref} style={{ width: '100%', height: '100%', ...style }}>
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          // set the map prop on the child component
+          // @ts-ignore
+          return React.cloneElement(child, { map });
+        }
+      })}
+    </div>
+  );
 }
 
 interface MapWrapperProps extends MapProps {
@@ -78,7 +91,12 @@ export default function MapWrapper({ pharmacies }: MapWrapperProps) {
         center={{ lat: 38.4771946, lng: -1.32498899 }}
         zoom={16}
         pharmacies={pharmacies}
-      />
+      >
+        {pharmacies.map(({ coordinates }, index) => {
+          const [lat, lng] = coordinates;
+          return <MapMarker key={index} position={{ lat, lng }} />;
+        })}
+      </Map>
     </Wrapper>
   );
 }

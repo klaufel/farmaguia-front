@@ -1,10 +1,20 @@
+type UbicationType = {
+  municipality: string;
+  province: string;
+};
+
+type GuardDatesType = {
+  date: string;
+  ids: string[];
+};
+
 type PharmaciesType = {
   id: string;
   name: string;
   pharmacist: string;
   phone: string;
   address: string;
-  city: string;
+  municipality: string;
   province: string;
   zipCode: string;
   coordinates: number[];
@@ -23,3 +33,8 @@ type PharmaciesType = {
 };
 
 type PharmacyShedule = [string[]][];
+
+type SeoPageType = {
+  title: string;
+  description: string;
+};

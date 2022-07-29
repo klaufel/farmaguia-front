@@ -49,6 +49,19 @@ const getIsPharmacyOpen = ({
   );
 };
 
+const pharmaciesSorterName = (x: PharmaciesType, y: PharmaciesType) => {
+  if (x.name < y.name) return -1;
+  if (x.name > y.name) return 1;
+  return 0;
+};
+
+const pharmaciesSorterGuards = (x: PharmaciesType, y: PharmaciesType) => {
+  if (x?.isOnGuard) return -1;
+  if (x?.isOpen === y?.isOpen) return 0;
+  if (x?.isOpen) return -1;
+  return 1;
+};
+
 const pharmaciesEntitymapper = ({
   pharmacies,
   guardDates,
@@ -56,15 +69,16 @@ const pharmaciesEntitymapper = ({
 }: PharmaciesEntityMapper): PharmaciesType[] => {
   const pharmacyOnGuardIds = getPharmacyOnGuardIds({ guardDates, currentDate });
 
-  return pharmacies.map(({ id, schedule, ...pharmacy }) => {
-    return {
+  return pharmacies
+    .map(({ id, schedule, ...pharmacy }) => ({
       ...pharmacy,
       id,
       schedule,
       isOnGuard: pharmacyOnGuardIds?.includes(id),
       isOpen: getIsPharmacyOpen({ schedule, currentDate }),
-    };
-  });
+    }))
+    .sort(pharmaciesSorterName)
+    .sort(pharmaciesSorterGuards);
 };
 
 export default function usePharmacies({
@@ -95,7 +109,7 @@ export default function usePharmacies({
     });
     setPharmacyOnGuardIds(pharmacyOnGuardIds);
     setPharmaciesList(pharmaciesMapper);
-  }, [currentDate]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [currentDate, guardDates, pharmacies]);
 
   return {
     currentDate,
