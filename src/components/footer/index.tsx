@@ -6,12 +6,9 @@ export default function Footer() {
       <div className="container m-auto py-10 text-white">
         <span className="font-semibold">Farmacias de guardia</span>
         <br />
-        <Link href="/murcia/jumilla" passHref>
-          <a>Farmacias de guardia en Jumilla</a>
-        </Link>
         <br />
-        <Link href="/murcia/yecla" passHref>
-          <a>Farmacias de guardia en Yecla</a>
+        <Link href="/murcia/jumilla" passHref>
+          <a className="my-1">Farmacias de guardia en Jumilla</a>
         </Link>
       </div>
     </div>
