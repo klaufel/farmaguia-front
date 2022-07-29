@@ -3,7 +3,7 @@ interface TitleProps {
 }
 
 const Logo = () => (
-  <div className="w-14 h-auto">
+  <div className="w-8 sm:w-10 h-auto">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
       <path fill="#3BBB8C" d="M0 43h160v60H0V43Z" />
       <path fill="#3BBB8C" d="M110 0v94H50V0h60Z" />
@@ -19,13 +19,13 @@ const Logo = () => (
 
 export default function Title({ currentDate }: TitleProps) {
   return (
-    <div className="h-24 px-6 py-4 w-full sticky top-0 left-0 border-b bg-white border-gray-200 flex items-center">
+    <div className="h-16 sm:h-20 px-4 sm:px-6 py-2 sm:py-4 w-full sticky top-0 left-0 border-b bg-white border-gray-200 flex items-center">
       <Logo />
-      <div className="ml-6">
-        <h1 className="text-xl md:text-2xl mb-1 font-semibold">
+      <div className="ml-4 sm:ml-6">
+        <h1 className="text-md md:text-xl font-semibold">
           Farmacias de guardia en Jumilla
         </h1>
-        <h2 className="text-md md:text-lg">
+        <h2 className="text-sm md:text-md">
           Hoy{' '}
           {currentDate.toLocaleString('es-ES', {
             day: 'numeric',

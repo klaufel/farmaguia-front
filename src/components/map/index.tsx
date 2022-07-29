@@ -1,78 +1,84 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { divIcon } from 'leaflet';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { useRef, useState, useEffect } from 'react';
+import { Wrapper } from '@googlemaps/react-wrapper';
 
-import { LocationMarkerIcon } from '@heroicons/react/outline';
+import { styles } from './mapStyle';
 
-import PharmacyCard from '../pharmacyCard';
-
-const customMarkerIcon = divIcon({
-  html: renderToStaticMarkup(
-    <div className="bg-green-600 w-8 h-8 p-1 shadow-xl -mt-2 -ml-3 rounded-full">
-      <LocationMarkerIcon className="w-6 h-6 text-white" />
-    </div>
-  ),
-});
-
-import 'leaflet/dist/leaflet.css';
-
-interface MapProps {
-  currentDate: Date;
+interface MapProps extends google.maps.MapOptions {
+  center?: google.maps.LatLngLiteral;
   pharmacies: PharmaciesType[];
-  pharmacyOnGuardIds?: string[];
+  style?: { [key: string]: string };
+  zoom?: number;
 }
 
-export default function Map({
-  currentDate,
-  pharmacies,
-  pharmacyOnGuardIds,
-}: MapProps) {
-  const appId = 'IAOpWtaJ1MqilFQE43z2';
-  const appCode = 'Yc6BorxizRSjZ6EdzJllmA';
-  const apiKey = 'muj8iFFOls6-UBh09fOEEI3GS3re61j0FaFhHfI9J4c';
-  const language = 'spa';
-  const base = 'base';
-  const scheme = 'normal.day';
-  const tileType = 'maptile';
+// Return map bounds based on list of places
+const getMapBounds = (pharmacies: PharmaciesType[]) => {
+  const bounds = new google.maps.LatLngBounds();
 
-  const bounds: [number, number][] = [];
-
-  pharmacies.map(({ coordinates }) => {
-    const [lat, lng] = coordinates;
-    bounds.push([lat, lng]);
+  pharmacies.forEach((pharmacy) => {
+    bounds.extend(
+      new google.maps.LatLng(pharmacy.coordinates[0], pharmacy.coordinates[1])
+    );
   });
 
+  return bounds;
+};
+
+// Add map markers on list of places
+const getMapMarkers = (pharmacies: PharmaciesType[], map: google.maps.Map) => {
+  pharmacies.forEach((pharmacy) => {
+    const marker = new google.maps.Marker({
+      position: new google.maps.LatLng(
+        pharmacy.coordinates[0],
+        pharmacy.coordinates[1]
+      ),
+      title: pharmacy.name,
+    });
+
+    marker.setMap(map);
+  });
+};
+
+function Map({ center, pharmacies, style, zoom = 3 }: MapProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [map, setMap] = useState<google.maps.Map>();
+
+  useEffect(() => {
+    if (ref.current && !map) {
+      setMap(
+        new window.google.maps.Map(ref.current, {
+          backgroundColor: '#f7f8f9',
+          zoom,
+          center,
+          disableDefaultUI: true,
+          styles,
+        })
+      );
+    }
+  }, [ref, map]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (map) {
+      const bounds = getMapBounds(pharmacies);
+      map.fitBounds(bounds);
+      getMapMarkers(pharmacies, map);
+    }
+  }, [map, pharmacies]);
+
+  return <div ref={ref} style={{ width: '100%', height: '100%', ...style }} />;
+}
+
+interface MapWrapperProps extends MapProps {
+  currentDate: Date;
+}
+
+export default function MapWrapper({ pharmacies }: MapWrapperProps) {
   return (
-    <MapContainer
-      center={[38.4771946, -1.32498899]}
-      zoom={16}
-      scrollWheelZoom
-      bounds={bounds}
-      className="w-full h-full"
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url={`https://2.${base}.maps.ls.hereapi.com/maptile/2.1/${tileType}/newest/${scheme}/{z}/{x}/{y}/512/png8?app_id=${appId}&app_code=${appCode}&apiKey=${apiKey}&lg=${language}`}
+    <Wrapper apiKey="AIzaSyCJWZ2UyzY6YoROYqpHQwsU5xUkdeGHieI">
+      <Map
+        center={{ lat: 38.4771946, lng: -1.32498899 }}
+        zoom={16}
+        pharmacies={pharmacies}
       />
-
-      {pharmacies.map(({ id, coordinates, ...props }) => {
-        const [lat, lng] = coordinates;
-
-        return (
-          <Marker key={id} position={[lat, lng]} icon={customMarkerIcon}>
-            <Popup>
-              <PharmacyCard
-                isPopup
-                id={id}
-                coordinates={coordinates}
-                isOnGuard={pharmacyOnGuardIds?.includes(id)}
-                currentDate={currentDate}
-                {...props}
-              />
-            </Popup>
-          </Marker>
-        );
-      })}
-    </MapContainer>
+    </Wrapper>
   );
 }

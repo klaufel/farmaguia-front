@@ -1,9 +1,11 @@
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import config from '@pod/config';
+import { Suspense } from 'react';
 
-const DynamicMap = dynamic(() => import('../components/map'), {
+const Map = dynamic(() => import('../components/map'), {
   ssr: false,
+  suspense: true,
 });
 
 import PharmacyCard from '../components/pharmacyCard';
@@ -34,8 +36,8 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
         />
       </Head>
       <Title currentDate={currentDate} />
-      <div className="flex " style={{ minHeight: 'calc(100vh - 6rem)' }}>
-        <div className="p-6 w-full max-w-content">
+      <div className="flex ">
+        <div className="p-4 sm:p-6 w-full max-w-content">
           <ul className="grid gap-6 md:grid-cols-2">
             {pharmacies.map(({ id, ...props }) => (
               <li key={id}>
@@ -50,14 +52,16 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
           </ul>
         </div>
         <div
-          className="flex-1 sticky"
-          style={{ top: '6rem', height: 'calc(100vh - 6rem)' }}
+          className="flex-1 sticky hidden sm:block"
+          style={{
+            top: '5rem',
+            height: 'calc(100vh - 5rem)',
+            background: '#f7f8f9',
+          }}
         >
-          <DynamicMap
-            pharmacies={pharmacies}
-            currentDate={currentDate}
-            pharmacyOnGuardIds={pharmacyOnGuardIds}
-          />
+          <Suspense fallback={null}>
+            <Map pharmacies={pharmacies} currentDate={currentDate} />
+          </Suspense>
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import cx from 'classnames';
 import dynamic from 'next/dynamic';
 import {
@@ -11,14 +11,16 @@ import {
 
 import { formatDate } from '../../date-utils';
 
-const PharmacySchedule = dynamic(() => import('../pharmacySchedule'));
+import PharmacySchedule from '../pharmacySchedule';
 
-const PharmacyLabel = dynamic(() => import('../pharmacyLabel'));
+const PharmacyLabel = dynamic(() => import('../pharmacyLabel'), {
+  ssr: false,
+  suspense: true,
+});
 
 interface PharmacyCardProps extends PharmaciesType {
   isOnGuard?: boolean;
   currentDate: Date;
-  isPopup?: boolean;
 }
 
 const getIsOpen = (startDate: string, endDate: string) => {
@@ -42,7 +44,6 @@ export default function PharmacyCard({
   address,
   currentDate,
   schedule,
-  isPopup,
   name,
   phone,
 }: PharmacyCardProps) {
@@ -58,20 +59,17 @@ export default function PharmacyCard({
     <div
       className={cx(
         'bg-white p-4 sm:p-6 shadow-card rounded-xl text-gray-500',
-        isOnGuard && 'bg-green-50',
-        isPopup && 'shadow-none p-0 sm:p-0'
+        isOnGuard && 'bg-green-50'
       )}
     >
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-lg sm:text-xl font-semibold text-gray-800">
-          {name}
-        </h3>
+        <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
       </div>
       <span className="text-sm flex items-center">
         <PhoneIcon className="w-4 mr-2" />
         {i18n.phone(phone)}
         <a
-          className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-gray-100 ml-2"
+          className="text-xs md:hidden font-semibold inline-block py-1 px-2 uppercase rounded bg-gray-100 ml-2"
           href={`tel:${phone.replace(/ /g, '')}`}
           rel="noreferrer noopener"
         >
@@ -85,29 +83,30 @@ export default function PharmacyCard({
       <div className="text-sm mt-1 mb-2">
         <div
           className="inline-flex items-center cursor-pointer"
-          onClick={() => !isPopup && setShowShedule(!showShedule)}
+          onClick={() => setShowShedule(!showShedule)}
         >
           <ClockIcon className="w-4 mr-2" />
           {schedule[currentDay].map(([x, y]) => `${x} - ${y}`).join(', ')}
-          {!isPopup &&
-            (showShedule ? (
-              <ChevronUpIcon className="w-4 ml-1" />
-            ) : (
-              <ChevronDownIcon className="w-4 ml-1" />
-            ))}
+          {showShedule ? (
+            <ChevronUpIcon className="w-4 ml-1" />
+          ) : (
+            <ChevronDownIcon className="w-4 ml-1" />
+          )}
         </div>
-        {!isPopup && showShedule && (
+        {showShedule && (
           <div className="pl-6 pt-2 pb-2">
             <PharmacySchedule schedule={schedule} />
           </div>
         )}
       </div>
-      <PharmacyLabel
-        currentDate={currentDate}
-        isOnGuard={isOnGuard}
-        isOpen={isOpen}
-        schedule={schedule}
-      />
+      <Suspense fallback={<div style={{ height: '24px' }} />}>
+        <PharmacyLabel
+          currentDate={currentDate}
+          isOnGuard={isOnGuard}
+          isOpen={isOpen}
+          schedule={schedule}
+        />
+      </Suspense>
     </div>
   );
 }
