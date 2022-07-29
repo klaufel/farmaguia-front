@@ -48,7 +48,7 @@ export const pharmaciesResponse = [
     name: 'Farmacia Miguel Cambronero',
     pharmacist: 'Miguel Cambronero Sanchez',
     phone: '968782812',
-    address: 'C. Ortega y Gasset 36, Jumilla, Spain',
+    address: 'C. Ortega y Gasset 36',
     city: 'Jumilla',
     province: 'Murcia',
     zipCode: '30520',

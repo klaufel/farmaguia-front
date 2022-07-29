@@ -25,3 +25,17 @@ export const formatDate = (
 
   return format.replace('dd', day).replace('mm', month).replace('yyyy', year);
 };
+
+/*
+ * @params date <Date>, locale <string> 'es-ES'
+ * Format date to weekdaay an locale string: 'weekday, {day} {month} {year}'
+ */
+
+export const getFormatedDateString = (date: Date, locale: string = 'es-ES') => {
+  return date.toLocaleString(locale, {
+    day: 'numeric',
+    month: 'long',
+    weekday: 'long',
+    year: 'numeric',
+  });
+};

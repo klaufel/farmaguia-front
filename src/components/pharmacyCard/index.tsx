@@ -40,12 +40,13 @@ const i18n = {
 };
 
 export default function PharmacyCard({
-  isOnGuard,
   address,
   currentDate,
-  schedule,
+  isOnGuard,
   name,
+  pharmacist,
   phone,
+  schedule,
 }: PharmacyCardProps) {
   const [showShedule, setShowShedule] = useState(false);
   const currentDay = currentDate.getDay() - 1;
@@ -62,9 +63,8 @@ export default function PharmacyCard({
         isOnGuard && 'bg-green-50'
       )}
     >
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
-      </div>
+      <h3 className="text-lg font-semibold text-gray-800 mb-1">{name}</h3>
+      <h4 className="text-sm font-semibold mb-3">{pharmacist}</h4>
       <span className="text-sm flex items-center">
         <PhoneIcon className="w-4 mr-2" />
         {i18n.phone(phone)}
@@ -80,7 +80,7 @@ export default function PharmacyCard({
         <LocationMarkerIcon className="w-4 mr-2" />
         {address}
       </span>
-      <div className="text-sm mt-1 mb-2">
+      <div className="text-sm mt-1 mb-3">
         <div
           className="inline-flex items-center cursor-pointer"
           onClick={() => setShowShedule(!showShedule)}
@@ -94,7 +94,7 @@ export default function PharmacyCard({
           )}
         </div>
         {showShedule && (
-          <div className="pl-6 pt-2 pb-2">
+          <div className="pl-6 pt-2">
             <PharmacySchedule schedule={schedule} />
           </div>
         )}

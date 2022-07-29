@@ -17,9 +17,18 @@ import { formatDate } from '../date-utils';
 interface PageHomeProps {
   guardDates: GuardDatesType[];
   pharmacies: PharmaciesType[];
+  ubication: {
+    municipality: string;
+    province: string;
+  };
 }
 
-export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
+export default function PageHome({
+  guardDates,
+  pharmacies,
+  ubication,
+}: PageHomeProps) {
+  const { municipality, province } = ubication;
   const currentDate = useDate();
 
   const pharmacyOnGuardIds = guardDates.find(
@@ -29,15 +38,17 @@ export default function PageHome({ guardDates, pharmacies }: PageHomeProps) {
   return (
     <>
       <Head>
-        <title>Farmacias de guardia en Jumilla - Murcia</title>
+        <title>
+          Farmacias de guardia en {municipality} - {province}
+        </title>
         <meta
           name="description"
-          content="Podrás comprobar qué farmacia de guardia está abierta en Jumilla, Murcia. También verás los horarios, teléfono y encontrar de todas las farmacias de Jumilla."
+          content={`Podrás comprobar qué farmacia de guardia está abierta en ${municipality}, ${province}. También verás los horarios, teléfono y encontrar de todas las farmacias de ${municipality}.`}
         />
       </Head>
-      <Title currentDate={currentDate} />
       <div className="flex ">
-        <div className="p-4 sm:p-6 w-full max-w-content">
+        <div className="px-4 sm:px-6 w-full max-w-content">
+          <Title currentDate={currentDate} municipality={municipality} />
           <ul className="grid gap-6 md:grid-cols-2">
             {pharmacies.map(({ id, ...props }) => (
               <li key={id}>
@@ -76,5 +87,10 @@ export const getServerSideProps = async () => {
     await fetch(`${apiUrl}/api/dates`),
   ]).then((responses) => Promise.all(responses.map((r) => r.json())));
 
-  return { props: { pharmacies, guardDates } };
+  const ubication = {
+    municipality: 'Jumilla',
+    province: 'Murcia',
+  };
+
+  return { props: { guardDates, pharmacies, ubication } };
 };
