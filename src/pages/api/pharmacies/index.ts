@@ -1,21 +1,34 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+import { kebabCase } from '../../../utils';
 import { pharmaciesResponse } from './pharmaciesResponse';
-
-const kebabCase = (string: string) => {
-  return string
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .replace(/[\s_]+/g, '-')
-    .toLowerCase();
-};
 
 export default function apiPharmacies(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const response = pharmaciesResponse.filter(
-    ({ municipality }) => kebabCase(municipality) === req?.query?.municipality
+  const provinceQuery = req?.query?.province;
+  const municipalityQuery = req?.query?.municipality;
+  const slugQuery = req?.query?.slug;
+
+  const responseProvince = pharmaciesResponse.filter(
+    ({ province }) => kebabCase(province) === provinceQuery
   );
+
+  const responseMunicipality = pharmaciesResponse.filter(
+    ({ municipality }) => kebabCase(municipality) === municipalityQuery
+  );
+
+  const responseSlug = pharmaciesResponse.filter(
+    ({ name }) => kebabCase(name) === slugQuery
+  );
+
+  const isOnlyProvince = provinceQuery && !municipalityQuery;
+  const responseLocation = isOnlyProvince
+    ? responseProvince
+    : responseMunicipality;
+
+  const response = slugQuery ? responseSlug : responseLocation;
 
   return res.status(200).json(response);
 }

@@ -1,1 +1,1 @@
-export { default, getServerSideProps } from './murcia/[municipality]';
+export { default, getServerSideProps } from './[province]/[municipality]';

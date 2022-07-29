@@ -20,6 +20,7 @@ type PharmaciesType = {
   coordinates: number[];
   email: string;
   sanitaryAuth: string;
+  detailUrl: string;
   social: {
     facebook: string;
     instagram: string;

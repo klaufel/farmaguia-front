@@ -48,6 +48,7 @@ function Map({ center, pharmacies, style, zoom = 3 }: MapProps) {
         new window.google.maps.Map(ref.current, {
           backgroundColor: '#f7f8f9',
           center,
+          maxZoom: 20,
           disableDefaultUI: true,
           scrollwheel: true,
           styles,

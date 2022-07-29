@@ -1,13 +1,12 @@
-import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { kebabCase } from '../../utils';
 
 const Map = dynamic(() => import('../../components/map'), {
   ssr: false,
   suspense: true,
 });
-
-import PharmacyCard from '../../components/pharmacyCard';
-import Title from '../../components/title';
 
 import usePharmacies from '../../hooks/usePharmacies';
 
@@ -22,24 +21,27 @@ export default function ContainerList({
   pharmacies,
   ubication,
 }: ContainerListProps) {
-  const { municipality } = ubication;
+  const { municipality, province } = ubication;
 
   const { currentDate, pharmaciesList } = usePharmacies({
     guardDates,
     pharmacies,
   });
 
+  const [{ name, pharmacist }] = pharmacies;
+
+  const backUrl = `/${kebabCase(province)}/${kebabCase(municipality)}`;
+
   return (
     <div className="flex">
       <div className="px-4 sm:px-6 pb-8 sm:pb-12 w-full max-w-content">
-        <Title currentDate={currentDate} municipality={municipality} />
-        <ul className="grid gap-6 md:grid-cols-2">
-          {pharmaciesList?.map(({ id, ...props }) => (
-            <li key={id}>
-              <PharmacyCard id={id} currentDate={currentDate} {...props} />
-            </li>
-          ))}
-        </ul>
+        <div className="py-4 sm:py-6 mb-4 sm:mb-6 border-b border-gray-100">
+          <h1 className="text-lg md:text-2xl font-semibold mb-1">{name}</h1>
+          <h2 className="text-md md:text-lg">{pharmacist}</h2>
+        </div>
+        <Link href={backUrl} passHref>
+          <a>Volver al listado</a>
+        </Link>
       </div>
       <div
         className="flex-1 sticky hidden sm:block"

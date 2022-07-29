@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { formatDate } from '../../date-utils';
 import useDate from '../useDate';
 
+import { kebabCase } from '../../utils';
+
 interface UsePharmaciesProps {
   guardDates: GuardDatesType[];
   pharmacies: PharmaciesType[];
@@ -74,6 +76,9 @@ const pharmaciesEntitymapper = ({
       ...pharmacy,
       id,
       schedule,
+      detailUrl: `/${kebabCase(pharmacy.province)}/${kebabCase(
+        pharmacy.municipality
+      )}/${kebabCase(pharmacy.name)}`,
       isOnGuard: pharmacyOnGuardIds?.includes(id),
       isOpen: getIsPharmacyOpen({ schedule, currentDate }),
     }))

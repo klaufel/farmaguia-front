@@ -1,15 +1,25 @@
 import Link from 'next/link';
 
+const links = [
+  { url: '/murcia', title: 'Murcia' },
+  { url: '/murcia/jumilla', title: 'Jumilla' },
+  { url: '/murcia/yecla', title: 'Yecla' },
+];
+
 export default function Footer() {
   return (
     <div className="w-full bg-primary">
-      <div className="container m-auto py-10 text-white">
+      <div className="container py-10 px-4 sm:px-6 m-auto text-white">
         <span className="font-semibold">Farmacias de guardia</span>
-        <br />
-        <br />
-        <Link href="/murcia/jumilla" passHref>
-          <a className="my-1">Farmacias de guardia en Jumilla</a>
-        </Link>
+        <ul className="mt-4">
+          {links.map(({ url, title }) => (
+            <li key={url} className="py-1">
+              <Link href={url} passHref>
+                <a>Farmacias de guardia en {title}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

@@ -365,48 +365,4 @@ export const pharmaciesResponse = [
       [],
     ],
   },
-  {
-    id: '61f63444-cce6-40df-821b-fe4e8a818713',
-    name: 'Farmacia Chamorro',
-    pharmacist: 'Miguel Chamorro',
-    phone: '968921992',
-    address: 'C. Irene López Heredia, 18',
-    municipality: 'Yecla',
-    province: 'Murcia',
-    zipCode: '30520',
-    coordinates: [38.48045932268097, -1.3226227093942184],
-    email: '',
-    sanitaryAuth: '',
-    social: {
-      facebook: '',
-      instagram: '',
-      twitter: '',
-      web: '',
-      youtube: '',
-    },
-    schedule: [
-      [
-        ['9:00', '14:00'],
-        ['17:00', '20:00'],
-      ],
-      [
-        ['9:00', '14:00'],
-        ['17:00', '20:00'],
-      ],
-      [
-        ['9:00', '14:00'],
-        ['17:00', '20:00'],
-      ],
-      [
-        ['9:00', '14:00'],
-        ['17:00', '20:00'],
-      ],
-      [
-        ['9:00', '14:00'],
-        ['17:00', '20:00'],
-      ],
-      [['10:00', '13:45']],
-      [],
-    ],
-  },
 ];
