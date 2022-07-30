@@ -1,4 +1,4 @@
-# pharmacies-on-duty
+# farmaguia-front
 
 ## Root workspace
 
