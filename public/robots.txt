@@ -1,4 +1,7 @@
 User-agent: *
-Allow: /*
-
+Allow: /
 Disallow: /api/*
+
+Host: https://farmaciasenjumilla.com
+
+Sitemap: https://farmaciasenjumilla.com/sitemap.xml
