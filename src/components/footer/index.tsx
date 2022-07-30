@@ -9,7 +9,7 @@ const links = [
 export default function Footer() {
   return (
     <div className="w-full bg-primary">
-      <div className="container py-10 px-4 sm:px-6 m-auto text-white">
+      <div className="container py-10 px-4 sm:px-6 mx-auto text-white">
         <span className="font-semibold">Farmacias de guardia</span>
         <ul className="mt-4">
           {links.map(({ url, title }) => (

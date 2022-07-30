@@ -42,11 +42,10 @@ export default function ContainerList({
         </ul>
       </div>
       <div
-        className="flex-1 sticky hidden sm:block"
+        className="flex-1 sticky hidden sm:block bg-map"
         style={{
           top: '5rem',
           height: 'calc(100vh - 5rem)',
-          background: '#f7f8f9',
         }}
       >
         <Suspense fallback={null}>

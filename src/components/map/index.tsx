@@ -7,6 +7,7 @@ interface MapProps extends google.maps.MapOptions {
   center?: google.maps.LatLngLiteral;
   pharmacies: PharmaciesType[];
   style?: { [key: string]: string };
+  maxZoom?: number;
   zoom?: number;
 }
 
@@ -38,7 +39,7 @@ const getMapMarkers = (pharmacies: PharmaciesType[], map: google.maps.Map) => {
   });
 };
 
-function Map({ center, pharmacies, style, zoom = 3 }: MapProps) {
+function Map({ center, pharmacies, style, maxZoom, zoom = 3 }: MapProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
 
@@ -48,7 +49,7 @@ function Map({ center, pharmacies, style, zoom = 3 }: MapProps) {
         new window.google.maps.Map(ref.current, {
           backgroundColor: '#f7f8f9',
           center,
-          maxZoom: 20,
+          maxZoom,
           disableDefaultUI: true,
           scrollwheel: true,
           styles,
@@ -74,16 +75,17 @@ interface MapWrapperProps extends MapProps {
 }
 
 export default function MapWrapper({
-  pharmacies,
+  maxZoom,
   municipality,
+  pharmacies,
 }: MapWrapperProps) {
   return (
     <Wrapper apiKey="AIzaSyCJWZ2UyzY6YoROYqpHQwsU5xUkdeGHieI">
       <Map
-        key={municipality}
         center={{ lat: 38.4771946, lng: -1.32498899 }}
-        zoom={16}
+        maxZoom={maxZoom}
         pharmacies={pharmacies}
+        zoom={16}
       />
     </Wrapper>
   );

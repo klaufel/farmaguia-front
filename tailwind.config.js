@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#3bbb8c',
+        map: '#f7f8f9',
       },
       maxWidth: {
         content: '56rem',
