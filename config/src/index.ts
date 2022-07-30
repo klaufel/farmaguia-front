@@ -1,8 +1,8 @@
-const apiUrl = 'https://api.farmaciasenjumilla.com';
+const apiUrl = 'https://api.farmaguia.app';
 
 const config = {
   apiUrl,
-  EMAIL: 'info@farmaciasenjumilla.com',
+  EMAIL: 'info@farmaguia.app',
   WEEK: {
     DAYS: [
       'Lunes',

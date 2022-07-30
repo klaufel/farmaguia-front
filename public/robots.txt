@@ -2,6 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/*
 
-Host: https://farmaciasenjumilla.com
+Host: https://farmaguia.app
 
-Sitemap: https://farmaciasenjumilla.com/sitemap.xml
+Sitemap: https://farmaguia.app/sitemap.xml
