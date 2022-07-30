@@ -45,7 +45,7 @@ const getIsPharmacyOpen = ({
   currentDate: Date;
 }) => {
   const currentDay = currentDate.getDay() - 1;
-  return schedule[currentDay].reduce(
+  return schedule[currentDay]?.reduce(
     (acc, [x, y]) => getIsOpen(x, y) || acc,
     false
   );

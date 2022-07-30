@@ -5,14 +5,20 @@ import Header from '../../components/header';
 
 interface LayoutMainProps {
   children: ReactNode;
+  hasFooter?: boolean;
+  hasHeader?: boolean;
 }
 
-export default function LayoutMain({ children }: LayoutMainProps) {
+export default function LayoutMain({
+  children,
+  hasFooter = true,
+  hasHeader = true,
+}: LayoutMainProps) {
   return (
     <>
-      <Header />
+      {hasHeader && <Header />}
       <main>{children}</main>
-      <Footer />
+      {hasFooter && <Footer />}
     </>
   );
 }

@@ -4,11 +4,15 @@ import dynamic from 'next/dynamic';
 import { kebabCase } from '../../utils';
 import Image from 'next/image';
 
+import { formatDate } from '../../date-utils';
+
 import { GlobeAltIcon, MailIcon, PhoneIcon } from '@heroicons/react/outline';
 
 const i18n = {
   phone: (str: string) => str.match(/.{1,3}/g)?.join(' '),
 };
+
+import Calendar from '../../components/calendar';
 
 import PharmacySchedule from '../../components/pharmacySchedule';
 import PharmacyLabel from '../../components/pharmacyLabel';
@@ -36,25 +40,29 @@ export default function ContainerList({
 
   const [pharmacy] = pharmaciesList;
   const {
-    name,
-    pharmacist,
     address,
+    email,
+    id,
     isOnGuard,
     isOpen,
-    id,
-    schedule,
-    email,
-    social,
-    phone,
-    zipCode,
-    province,
     municipality,
+    name,
+    pharmacist,
+    phone,
+    province,
+    schedule,
+    social,
+    zipCode,
   } = pharmacy;
   const { web } = social;
 
   const backUrl = `/${kebabCase(province)}/${kebabCase(municipality)}`;
 
   const fullAddress = [address, zipCode, municipality, province].join(', ');
+
+  const selectedDatesCalendar = guardDates
+    .filter(({ ids }) => ids.includes(id))
+    .map(({ date }) => date);
 
   const services = [
     'Atención farmacéutica',
@@ -115,21 +123,21 @@ export default function ContainerList({
           <h3 className="text-sm md:text-xl font-semibold mb-4">
             Información de la farmacia
           </h3>
-          <div className="grid md:grid-cols-3 gap-x-6 gap-y-2">
+          <div className="grid md:grid-cols-2 gap-x-6 gap-y-2">
             <span className="flex items-center">
               <PhoneIcon className="w-4 mr-2" />
               {i18n.phone(phone)}
             </span>
-            {web && (
-              <span className="flex items-center">
-                <GlobeAltIcon className="w-4 mr-2" />
-                {web.replace(/(^\w+:|^)\/\//, '')}
-              </span>
-            )}
             {email && (
               <span className="flex items-center">
                 <MailIcon className="w-4 mr-2" />
                 {email}
+              </span>
+            )}
+            {web && (
+              <span className="flex items-center">
+                <GlobeAltIcon className="w-4 mr-2" />
+                {web.replace(/(^\w+:|^)\/\//, '')}
               </span>
             )}
           </div>
@@ -140,16 +148,19 @@ export default function ContainerList({
             Horario y servicio de guardias
           </h3>
           <div className="grid md:grid-cols-3 gap-x-6 gap-y-2">
-            <PharmacySchedule schedule={schedule} />
+            <div>
+              <h4 className="text-gray-800 font-semibold mb-2">Horario:</h4>
+              <PharmacySchedule schedule={schedule} />
+            </div>
+
             <div>
               <h4 className="text-gray-800 font-semibold mb-2">
-                Fechas de guardias:
+                Calendario de guardias:
               </h4>
-              {guardDates
-                .filter(({ ids }) => ids.includes(id))
-                .map(({ date }) => (
-                  <span key={date}>{date}</span>
-                ))}
+              <Calendar
+                currentDate={currentDate}
+                selectedDates={selectedDatesCalendar}
+              />
             </div>
           </div>
         </div>

@@ -28,7 +28,6 @@ const i18n = {
 export default function PharmacyCard({
   address,
   currentDate,
-  id,
   isOnGuard,
   isOpen,
   name,
@@ -39,6 +38,11 @@ export default function PharmacyCard({
 }: PharmacyCardProps) {
   const [showShedule, setShowShedule] = useState(false);
   const currentDay = currentDate.getDay() - 1;
+
+  const currentShedule =
+    schedule[currentDay]?.map(([x, y]) => `${x} - ${y}`).join(', ') || isOnGuard
+      ? 'Ahora en turno de guardia'
+      : 'Cerrada';
 
   return (
     <Link href={detailUrl}>
@@ -73,7 +77,7 @@ export default function PharmacyCard({
             }}
           >
             <ClockIcon className="w-4 mr-2" />
-            {schedule[currentDay].map(([x, y]) => `${x} - ${y}`).join(', ')}
+            {currentShedule}
             {showShedule ? (
               <ChevronUpIcon className="w-4 ml-1" />
             ) : (
