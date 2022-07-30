@@ -19,7 +19,7 @@ export default function PageLogin() {
             <div>
               <label
                 htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 "
+                className="block mb-2 text-sm font-semibold text-gray-900 "
               >
                 Email
               </label>
@@ -34,7 +34,7 @@ export default function PageLogin() {
             <div>
               <label
                 htmlFor="password"
-                className="block mb-2 text-sm font-medium text-gray-900"
+                className="block mb-2 text-sm font-semibold text-gray-900"
               >
                 Contraseña
               </label>
@@ -62,26 +62,26 @@ export default function PageLogin() {
                   </label>
                 </div>
               </div>
-              <a
-                href="#"
-                className="text-sm font-medium text-primary-600 hover:underline"
-              >
-                ¿Has olvidado tu contraseña?
-              </a>
             </div>
             <button
               type="submit"
-              className="w-full block text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center items-center dark:focus:ring-primary/55"
+              className="w-full block text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 font-semibold rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center items-center dark:focus:ring-primary/55"
             >
               Iniciar sesión
             </button>
           </form>
         </div>
       </div>
-      <p className="text-sm font-light text-gray-500 mt-8">
+      <a
+        href="#"
+        className="text-sm font-semibold text-gray-500 hover:underline mt-8"
+      >
+        ¿Has olvidado tu contraseña?
+      </a>
+      <p className="text-sm text-gray-500 mt-4">
         ¿Todavía no tienes cuenta?{' '}
-        <a href="#" className="font-medium text-primary-600 hover:underline">
-          Regístrate, ¡es gratis!
+        <a href="#" className="font-semibold text-primary-600 hover:underline">
+          Regístrate
         </a>
       </p>
     </section>
