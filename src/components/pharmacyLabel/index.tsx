@@ -12,14 +12,14 @@ export default function PharmacyLabel({
   schedule,
 }: PharmacyLabelProps) {
   const currentDay = currentDate.getDay() - 1;
-
-  const nextDay = schedule[currentDay + 1];
+  const getNextDay = (day: number) => (day > 6 ? 0 : 6);
 
   const lastTurnHour = Number(schedule[currentDay][0][1].split(':')[0]);
-  const turn = currentDate.getHours() > lastTurnHour ? 1 : 0;
+  const turn = currentDate.getHours() >= lastTurnHour ? 1 : 0;
 
+  const nextDayShedule = schedule[getNextDay(currentDay + 1)]?.[0]?.[0];
   // @ts-ignore
-  const openHourNextDay = schedule[currentDay]?.[turn]?.[0] || nextDay[0][0];
+  const openHourNextDay = schedule[currentDay]?.[turn]?.[0] || nextDayShedule;
 
   return (
     <div className="inline-flex items-center">
