@@ -1,7 +1,4 @@
-const apiUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : `https://${process.env.VERCEL_URL}`;
+const apiUrl = 'https://api.farmaciasenjumilla.com';
 
 const config = {
   apiUrl,
