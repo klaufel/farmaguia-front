@@ -25,6 +25,28 @@ const i18n = {
   phone: (str: string) => str.match(/.{1,3}/g)?.join(' '),
 };
 
+interface GetFormatSheduleProps {
+  currentDate: Date;
+  isOnGuard?: boolean;
+  schedule: PharmacyShedule;
+}
+
+const getFormatShedule = ({
+  currentDate,
+  isOnGuard,
+  schedule,
+}: GetFormatSheduleProps): string => {
+  const currentDay = currentDate.getDay() - 1;
+
+  const formatShedule = ([x, y]: any[]): string => `${x} - ${y}`;
+  const getShedule = schedule[currentDay]?.map(formatShedule).join(', ');
+
+  const isOnGuardOrClosed = isOnGuard ? 'Ahora en turno de guardia' : 'Cerrada';
+  const currentShedule = getShedule ? getShedule : isOnGuardOrClosed;
+
+  return currentShedule;
+};
+
 export default function PharmacyCard({
   address,
   currentDate,
@@ -37,12 +59,8 @@ export default function PharmacyCard({
   schedule,
 }: PharmacyCardProps) {
   const [showShedule, setShowShedule] = useState(false);
-  const currentDay = currentDate.getDay() - 1;
 
-  const currentShedule =
-    schedule[currentDay]?.map(([x, y]) => `${x} - ${y}`).join(', ') || isOnGuard
-      ? 'Ahora en turno de guardia'
-      : 'Cerrada';
+  const currentShedule = getFormatShedule({ currentDate, isOnGuard, schedule });
 
   return (
     <Link href={detailUrl}>
