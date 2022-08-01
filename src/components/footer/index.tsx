@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
 const links = [
-  { url: '/murcia', title: 'Murcia' },
+  // { url: '/murcia', title: 'Murcia' },
   { url: '/murcia/jumilla', title: 'Jumilla' },
-  { url: '/murcia/yecla', title: 'Yecla' },
+  // { url: '/murcia/yecla', title: 'Yecla' },
 ];
 
 export default function Footer() {
