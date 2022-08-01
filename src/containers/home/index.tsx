@@ -10,9 +10,10 @@ export default function ContainerHome({}) {
         <h1 className="text-lg md:text-2xl font-semibold text-black mb-4">
           Listado farmacias y farmacias de guardia en tu ciudad
         </h1>
-        <p className="text-lg max-w-xl m-auto">
-          Encuentra farmacias cercanas, farmacias de guardia, 24 horas, con
-          envío a domilicio y mucho más
+        <p className="text-lg max-w-3xl m-auto">
+          Encuentra farmacias cercanas, farmacias de guardia, 24 horas,
+          servicios de las farmacias, ubicación, turnos de guardias y mucha más
+          información.
         </p>
       </div>
 

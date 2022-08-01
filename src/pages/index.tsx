@@ -20,10 +20,11 @@ export default function PageHome({ seoPage }: PageHomeProps) {
   );
 }
 
-export const getStaticProps = async ({ query }: any) => {
+export const getStaticProps = () => {
   const seoPage = {
-    title: `Farmacias de guardia en `,
-    description: `Podrás comprobar qué farmacia de guardia está abierta en  También verás los horarios, teléfono y encontrar de todas las farmacias de.`,
+    title: 'Listado farmacias y farmacias de guardia en tu ciudad',
+    description:
+      'Encuentra farmacias cercanas, farmacias de guardia, 24 horas, servicios de las farmacias, ubicación, turnos de guardias y mucha más información.',
   };
 
   return { props: { seoPage } };
