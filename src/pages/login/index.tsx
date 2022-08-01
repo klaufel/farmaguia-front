@@ -15,7 +15,7 @@ export default function PageLogin() {
       </h1>
       <div className="w-full bg-white rounded-lg shadow-card md:mt-0 sm:max-w-md xl:p-0">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <form className="space-y-4 md:space-y-6">
+          <form className="space-y-4 md:space-y-6" method="post">
             <div>
               <label
                 htmlFor="email"
@@ -72,7 +72,7 @@ export default function PageLogin() {
           </form>
         </div>
       </div>
-      <a
+      {/* <a
         href="#"
         className="text-sm font-semibold text-gray-500 hover:underline mt-8"
       >
@@ -83,7 +83,7 @@ export default function PageLogin() {
         <a href="#" className="font-semibold text-primary-600 hover:underline">
           Regístrate
         </a>
-      </p>
+      </p> */}
     </section>
   );
 }
