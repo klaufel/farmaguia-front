@@ -37,7 +37,6 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`}
-            strategy="afterInteractive"
           />
           <Script id="google-analytics">
             {`
