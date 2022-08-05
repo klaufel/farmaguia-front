@@ -182,11 +182,7 @@ export default function ContainerList({
           <address className="not-italic mb-6 block">{fullAddress}</address>
           <div className="w-full h-96 rounded-2xl overflow-hidden bg-map">
             <Suspense fallback={null}>
-              <Map
-                municipality={municipality}
-                pharmacies={pharmaciesList}
-                maxZoom={16}
-              />
+              <Map pharmacies={pharmaciesList} maxZoom={16} />
             </Suspense>
           </div>
         </div>

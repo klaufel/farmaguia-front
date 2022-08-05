@@ -2,11 +2,11 @@ import config from '@pod/config';
 export { default } from './[municipality]';
 
 export const getServerSideProps = async ({ query }: any) => {
-  const { apiUrl } = config;
+  const { apiUrl, apiInternalUrl } = config;
 
   const [pharmacies, guardDates] = await Promise.all([
     await fetch(
-      `${apiUrl}/api/pharmacies/?province=${query.province || 'murcia'}`
+      `${apiInternalUrl}/api/pharmacies/?province=${query.province || 'murcia'}`
     ),
     await fetch(`${apiUrl}/api/dates`),
   ]).then((responses) => Promise.all(responses.map((r) => r.json())));

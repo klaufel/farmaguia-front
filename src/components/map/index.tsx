@@ -71,14 +71,10 @@ function Map({ center, pharmacies, style, maxZoom, zoom = 3 }: MapProps) {
 }
 
 interface MapWrapperProps extends MapProps {
-  municipality: string;
+  pharmacies: PharmaciesType[];
 }
 
-export default function MapWrapper({
-  maxZoom,
-  municipality,
-  pharmacies,
-}: MapWrapperProps) {
+export default function MapWrapper({ maxZoom, pharmacies }: MapWrapperProps) {
   return (
     <Wrapper apiKey="AIzaSyCJWZ2UyzY6YoROYqpHQwsU5xUkdeGHieI">
       <Map
