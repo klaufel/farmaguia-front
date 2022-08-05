@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-import config from '@pod/config';
+import config from '@farmainfo/config';
 
 const { GTAG_ID } = config;
 

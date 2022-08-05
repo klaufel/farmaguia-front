@@ -1,5 +1,5 @@
 {
-  "name": "@pod/site",
+  "name": "@farmainfo/site",
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
@@ -17,8 +17,8 @@
   "dependencies": {
     "@googlemaps/react-wrapper": "1.1.35",
     "@heroicons/react": "1.0.6",
-    "@pod/config": "workspace:*",
-    "@pod/theme": "workspace:*",
+    "@farmainfo/config": "workspace:*",
+    "@farmainfo/theme": "workspace:*",
     "axios": "0.27.2",
     "classnames": "2.3.1",
     "next": "12.2.4",

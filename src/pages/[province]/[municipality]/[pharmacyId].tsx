@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import config from '@pod/config';
+import config from '@farmainfo/config';
 
 import ContainerDetail from '../../../containers/detail';
 

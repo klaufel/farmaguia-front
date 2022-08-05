@@ -1,4 +1,4 @@
-import config from '@pod/config';
+import config from '@farmainfo/config';
 export { default } from './[municipality]';
 
 export const getServerSideProps = async ({ query }: any) => {

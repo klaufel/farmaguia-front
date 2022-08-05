@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import config from '@pod/config';
+import config from '@farmainfo/config';
 
 interface PharmacyScheduleProps {
   schedule: string[][][];

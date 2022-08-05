@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import LayoutMain from '../layouts/main';
 
-import '@pod/theme';
+import '@farmainfo/theme';
 import '../styles/globals.css';
 
 export default function MyApp({

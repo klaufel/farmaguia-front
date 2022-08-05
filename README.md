@@ -1,4 +1,4 @@
-# farmaguia-front
+# farmainfo-front
 
 ## Root workspace
 
