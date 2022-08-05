@@ -4,8 +4,6 @@ import dynamic from 'next/dynamic';
 import { kebabCase } from '../../utils';
 import Image from 'next/image';
 
-import { formatDate } from '../../date-utils';
-
 import { GlobeAltIcon, MailIcon, PhoneIcon } from '@heroicons/react/outline';
 
 const i18n = {

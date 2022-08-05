@@ -9,6 +9,7 @@ const Map = dynamic(() => import('../../components/map'), {
 import PharmacyCard from '../../components/pharmacyCard';
 import Title from '../../components/title';
 
+import useMounted from '../../hooks/useMounted';
 import usePharmacies from '../../hooks/usePharmacies';
 
 interface ContainerListProps {
@@ -22,12 +23,14 @@ export default function ContainerList({
   pharmacies,
   ubication,
 }: ContainerListProps) {
-  const { municipality } = ubication;
+  const isMounted = useMounted();
 
   const { currentDate, pharmaciesList } = usePharmacies({
     guardDates,
     pharmacies,
   });
+
+  const { municipality } = ubication;
 
   return (
     <div className="flex">
@@ -48,9 +51,11 @@ export default function ContainerList({
           height: 'calc(100vh - 5rem)',
         }}
       >
-        <Suspense fallback={null}>
-          <Map municipality={municipality} pharmacies={pharmaciesList} />
-        </Suspense>
+        {isMounted && (
+          <Suspense fallback={null}>
+            <Map municipality={municipality} pharmacies={pharmaciesList} />
+          </Suspense>
+        )}
       </div>
     </div>
   );
