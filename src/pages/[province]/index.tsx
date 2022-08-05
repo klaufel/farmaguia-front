@@ -8,7 +8,7 @@ export const getServerSideProps = async ({ query }: any) => {
     await fetch(
       `${apiInternalUrl}/api/pharmacies/?province=${query.province || 'murcia'}`
     ),
-    await fetch(`${apiUrl}/api/dates`),
+    await fetch(`${apiInternalUrl}/api/dates`),
   ]).then((responses) => Promise.all(responses.map((r) => r.json())));
 
   const [{ province }] = pharmacies;
