@@ -16,7 +16,7 @@ export default function Logo() {
         <path fill="#ffffff" d="M100 79a20 20 0 1 1-40 0 20 20 0 0 1 40 0Z" />
       </svg>
       <span className="ml-2 font-semibold text-lg sm:text-xl mb-0.5 text-primary">
-        farmaguia
+        farmainfo
       </span>
     </div>
   );

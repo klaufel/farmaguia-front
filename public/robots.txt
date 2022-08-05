@@ -2,6 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/*
 
-Host: https://farmaguia.app
+Host: https://farmainfo.app
 
-Sitemap: https://farmaguia.app/sitemap.xml
+Sitemap: https://farmainfo.app/sitemap.xml
