@@ -1,6 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import Script from 'next/script';
 
+import config from '@pod/config';
+
+const { GTAG_ID } = config;
+
 export default class MyDocument extends Document {
   render() {
     return (
@@ -32,7 +36,7 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#3bbb8c" />
           <meta name="theme-color" content="#ffffff" />
           <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-GKMMPPEVJK"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`}
             strategy="afterInteractive"
           />
           <Script id="google-analytics">
@@ -40,7 +44,7 @@ export default class MyDocument extends Document {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-GKMMPPEVJK');
+              gtag('config', '${GTAG_ID}');
             `}
           </Script>
         </Head>
