@@ -1,15 +1,11 @@
-import config from '@farmainfo/config';
+import domain from '@farmainfo/domain';
 export { default } from './[municipality]';
 
 export const getServerSideProps = async ({ query }: any) => {
-  const { apiUrl, apiInternalUrl } = config;
-
   const [pharmacies, guardDates] = await Promise.all([
-    await fetch(
-      `${apiInternalUrl}/api/pharmacies/?province=${query.province || 'murcia'}`
-    ),
-    await fetch(`${apiInternalUrl}/api/dates`),
-  ]).then((responses) => Promise.all(responses.map((r) => r.json())));
+    domain.get('get_pharmacy_list_use_case').execute({ query }),
+    domain.get('get_pharmacy_guard_dates_use_case').execute(),
+  ]);
 
   const [{ province }] = pharmacies;
   const ubication = { municipality: province, province };

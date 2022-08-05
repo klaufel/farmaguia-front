@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import config from '@farmainfo/config';
+import domain from '@farmainfo/domain';
 
 import ContainerList from '../../containers/list';
 
@@ -34,16 +34,10 @@ export default function PageList({
 }
 
 export const getServerSideProps = async ({ query }: any) => {
-  const { apiUrl } = config;
-
   const [pharmacies, guardDates] = await Promise.all([
-    await fetch(
-      `${apiUrl}/api/pharmacies/?municipality=${
-        query.municipality || 'jumilla'
-      }`
-    ),
-    await fetch(`${apiUrl}/api/dates`),
-  ]).then((responses) => Promise.all(responses.map((r) => r.json())));
+    domain.get('get_pharmacy_list_use_case').execute({ query }),
+    domain.get('get_pharmacy_guard_dates_use_case').execute(),
+  ]);
 
   const [{ province, municipality }] = pharmacies;
   const ubication = { municipality, province };
