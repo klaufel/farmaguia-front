@@ -35,17 +35,21 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#3bbb8c" />
           <meta name="theme-color" content="#ffffff" />
-          <Script
+
+          <script
+            async
             src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`}
           />
-          <Script id="google-analytics">
-            {`
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${GTAG_ID}');
-            `}
-          </Script>
+            `,
+            }}
+          />
         </Head>
         <body className="bg-white">
           <Main />
