@@ -2,6 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/*
 
-Host: https://farmainfo.app
+# Host: https://farmainfo.app
 
 Sitemap: https://farmainfo.app/sitemap.xml
