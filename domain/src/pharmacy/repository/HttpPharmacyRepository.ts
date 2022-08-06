@@ -15,17 +15,17 @@ export default class HttpPharmacyRepository implements InterfaceRepository {
     this.fetcher = fetcher;
   }
 
-  async getPharmacyList() {
+  repositoryBaseConfig(filter = {}, action = 'find') {
     const mongodbConfig = JSON.stringify({
       collection: 'pharmacies',
       database: 'farmainfo',
       dataSource: 'farmainfo-0',
-      filter: { province: 'Murcia' },
+      filter,
     });
 
     const config = {
       method: 'post',
-      url: 'https://data.mongodb-api.com/app/data-pyzmj/endpoint/data/v1/action/find',
+      url: `https://data.mongodb-api.com/app/data-pyzmj/endpoint/data/v1/action/${action}`,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Request-Headers': '*',
@@ -35,17 +35,14 @@ export default class HttpPharmacyRepository implements InterfaceRepository {
       data: mongodbConfig,
     };
 
+    return config;
+  }
+
+  async getPharmacyList() {
+    const config = this.repositoryBaseConfig({ province: 'Murcia' });
     const { data } = await axios(config);
 
-    const pharmacyResponseToPharmacyEntityMapper = (pharmacies: []) => {
-      return pharmacies.map((pharmacy: { _id: string }) => ({
-        id: pharmacy._id,
-        ...pharmacy,
-      }));
-    };
-
-    const response = pharmacyResponseToPharmacyEntityMapper(data.documents);
-    return response;
+    return data.documents;
   }
 
   async getPharmacyGuardDates() {

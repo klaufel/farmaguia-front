@@ -1,5 +1,5 @@
 import HttpPharmacyRepository from './HttpPharmacyRepository';
 
-export const httpPharmacyRepository = ({ config }: { config: object }) => {
+export const httpPharmacyRepository = ({ config }: DomainRepository) => {
   return new HttpPharmacyRepository({ config, fetcher: {} });
 };

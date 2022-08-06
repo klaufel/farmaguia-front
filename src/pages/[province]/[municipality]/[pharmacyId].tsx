@@ -35,15 +35,11 @@ export default function PageList({
 }
 
 export const getServerSideProps = async ({ query }: any) => {
-  const { apiUrl } = config;
-
-  const [pharmacies] = await Promise.all([
-    await fetch(`${apiUrl}/api/pharmacies/?slug=${query.pharmacyId}`),
-  ]).then((responses) => Promise.all(responses.map((r) => r.json())));
-
-  const guardDates = await domain
-    .get('get_pharmacy_guard_dates_use_case')
-    .execute();
+  const { pharmacyId } = query;
+  const [pharmacies, guardDates] = await Promise.all([
+    domain.get('get_pharmacy_detail_use_case').execute({ pharmacyId }),
+    domain.get('get_pharmacy_guard_dates_use_case').execute(),
+  ]);
 
   const [{ province, municipality, name, zipCode, address, pharmacist }] =
     pharmacies;
