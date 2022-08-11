@@ -22,17 +22,12 @@ const Map = dynamic(() => import('../../components/map'), {
 import usePharmacies from '../../hooks/usePharmacies';
 
 interface ContainerListProps {
-  guardDates: GuardDatesType[];
   pharmacies: PharmaciesType[];
   ubication: UbicationType;
 }
 
-export default function ContainerList({
-  guardDates,
-  pharmacies,
-}: ContainerListProps) {
+export default function ContainerList({ pharmacies }: ContainerListProps) {
   const { currentDate, pharmaciesList } = usePharmacies({
-    guardDates,
     pharmacies,
   });
 
@@ -40,7 +35,6 @@ export default function ContainerList({
   const {
     address,
     email,
-    id,
     isOnGuard,
     isOpen,
     municipality,
@@ -51,16 +45,13 @@ export default function ContainerList({
     schedule,
     social,
     zipCode,
+    guards,
   } = pharmacy;
   const { web } = social;
 
   const backUrl = `/${kebabCase(province)}/${kebabCase(municipality)}`;
 
   const fullAddress = [address, zipCode, municipality, province].join(', ');
-
-  const selectedDatesCalendar = guardDates
-    .filter(({ ids }) => ids.includes(id))
-    .map(({ date }) => date);
 
   const services = [
     'Atención farmacéutica',
@@ -155,10 +146,7 @@ export default function ContainerList({
               <h4 className="text-gray-800 font-semibold mb-2">
                 Calendario de guardias:
               </h4>
-              <Calendar
-                currentDate={currentDate}
-                selectedDates={selectedDatesCalendar}
-              />
+              <Calendar currentDate={currentDate} selectedDates={guards} />
             </div>
           </div>
         </div>

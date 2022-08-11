@@ -1,11 +1,9 @@
 export default class GetPharmacyDetailUseCase {
   private repository;
-  private mapper;
 
   // @ts-ignore
-  constructor({ repository, mapper }) {
+  constructor({ repository }) {
     this.repository = repository;
-    this.mapper = mapper;
   }
 
   private _kebabCase(string: string) {
@@ -29,10 +27,8 @@ export default class GetPharmacyDetailUseCase {
 
   async execute({ pharmacyId }: { pharmacyId: string }) {
     const response = await this.repository.getPharmacyList();
-    const filter = this._getPharmacyBySlug({ response, pharmacyId });
+    const detail = this._getPharmacyBySlug({ response, pharmacyId });
 
-    const data = this.mapper.map(filter);
-
-    return data;
+    return detail;
   }
 }

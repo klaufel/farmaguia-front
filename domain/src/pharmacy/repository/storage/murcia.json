@@ -1,0 +1,333 @@
+[
+  {
+    "id": "62ed2c6b0e15fbb8b0e80ab1",
+    "name": "Farmacia Miguel Cambronero",
+    "pharmacist": "Miguel Cambronero Sanchez",
+    "phone": "968782812",
+    "address": "C. Ortega y Gasset 36",
+    "municipality": "Jumilla",
+    "province": "Murcia",
+    "zipCode": "30520",
+    "email": "farmaciasanjuanjumilla@gmail.com",
+    "sanitaryAuth": "",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "web": "",
+      "youtube": ""
+    },
+    "coordinates": [38.478538, -1.318396],
+    "guards": ["05/08/2022", "13/08/2022", "21/08/2022", "29/08/2022"],
+    "schedule": [
+      [
+        ["9:00", "14:00"],
+        ["17:30", "20:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:30", "20:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:30", "20:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:30", "20:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:30", "20:00"]
+      ],
+      [["11:00", "14:00"]],
+      []
+    ]
+  },
+  {
+    "id": "62ed2c7d0e15fbb8b0e80ab2",
+    "name": "Farmacia Guillen",
+    "pharmacist": "Manuel Guillen Whelan",
+    "phone": "968780165",
+    "address": "C. Cánovas del Castillo, 22",
+    "municipality": "Jumilla",
+    "province": "Murcia",
+    "zipCode": "30520",
+    "email": "farmaciaguillen@gmail.com",
+    "sanitaryAuth": "MU-103F",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "web": "https://www.farmaciaguillenfmas.com",
+      "youtube": ""
+    },
+    "coordinates": [38.474454, -1.330033],
+    "guards": ["07/08/2022", "15/08/2022", "23/08/2022", "31/08/2022"],
+    "schedule": [
+      [
+        ["9:00", "14:00"],
+        ["17:00", "21:00"]
+      ],
+      [
+        ["9:00", "10:00"],
+        ["17:00", "21:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "21:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "21:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "21:00"]
+      ],
+      [["10:00", "13:30"]],
+      []
+    ]
+  },
+  {
+    "id": "62ed2cd40e15fbb8b0e80ab3",
+    "name": "Farmacia Levante 31",
+    "pharmacist": "Pedro Soriano Sánchez",
+    "phone": "968780005",
+    "address": "Avda. de Levante, 31",
+    "municipality": "Jumilla",
+    "province": "Murcia",
+    "zipCode": "30520",
+    "email": "",
+    "sanitaryAuth": "",
+    "social": {
+      "facebook": "farmacialevante31",
+      "instagram": "",
+      "twitter": "",
+      "web": "",
+      "youtube": ""
+    },
+    "coordinates": [38.474446, -1.325781],
+    "guards": ["08/08/2022", "16/08/2022", "24/08/2022"],
+    "schedule": [
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      []
+    ]
+  },
+  {
+    "id": "62ed2cfa0e15fbb8b0e80ab4",
+    "name": "Farmacia Aurora Azorín",
+    "pharmacist": "Aurora Azorin Piñol",
+    "phone": "968780130",
+    "address": "C. Cánovas del Castillo, 50",
+    "municipality": "Jumilla",
+    "province": "Murcia",
+    "zipCode": "30520",
+    "email": "farmaciaazorincb@gmail.com",
+    "sanitaryAuth": "",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "web": "https://www.farmaciaazorinfmas.com",
+      "youtube": ""
+    },
+    "coordinates": [38.474615, -1.328604],
+    "guards": ["01/08/2022", "09/08/2022", "17/08/2022", "25/08/2022"],
+    "schedule": [
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [["10:00", "13:30"]],
+      []
+    ]
+  },
+  {
+    "id": "62ed2d220e15fbb8b0e80ab5",
+    "name": "Farmacia El Rollo",
+    "pharmacist": "Diego Soriano Sánchez",
+    "phone": "968782508",
+    "address": "C. Cánovas del Castillo, 109",
+    "municipality": "Jumilla",
+    "province": "Murcia",
+    "zipCode": "30520",
+    "email": "",
+    "sanitaryAuth": "",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "web": "https://farmacia-soriano-y-soriano-cb.negocio.sit",
+      "youtube": ""
+    },
+    "coordinates": [38.476155, -1.323307],
+
+    "guards": ["02/08/2022", "10/08/2022", "18/08/2022", "26/08/2022"],
+    "schedule": [
+      [
+        ["9:00", "14:00"],
+        ["17:30", "21:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:30", "21:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:30", "21:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:30", "21:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:30", "21:00"]
+      ],
+      [["10:00", "13:45"]],
+      []
+    ]
+  },
+  {
+    "id": "62ed2d4b0e15fbb8b0e80ab6",
+    "name": "Farmacia Mazuelas",
+    "pharmacist": "Manuel Mazuelas García",
+    "phone": "968782315",
+    "address": "C. Barón del Solar, 20",
+    "municipality": "Jumilla",
+    "province": "Murcia",
+    "zipCode": "30520",
+    "email": "farmaciamazuelascb@gmail.com",
+    "sanitaryAuth": "",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "web": "https://www.farmaciamazuelascbfmas.com",
+      "youtube": ""
+    },
+    "coordinates": [38.473864, -1.332654],
+    "guards": ["03/08/2022", "11/08/2022", "19/08/2022", "27/08/2022"],
+    "schedule": [
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:30"]
+      ],
+      [["10:00", "13:30"]],
+      []
+    ]
+  },
+  {
+    "id": "62ed2d800e15fbb8b0e80ab7",
+    "name": "Farmacia Alberto Agulló",
+    "pharmacist": "Alberto Agulló García",
+    "phone": "968780088",
+    "address": "C. Canalejas, 38",
+    "municipality": "Jumilla",
+    "province": "Murcia",
+    "zipCode": "30520",
+    "email": "",
+    "sanitaryAuth": "",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "web": "",
+      "youtube": ""
+    },
+    "coordinates": [38.475846, -1.329005],
+    "guards": ["04/08/2022", "12/08/2022", "20/08/2022", "28/08/2022"],
+    "schedule": [
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      [["9:00", "22:00"]],
+      []
+    ]
+  },
+  {
+    "id": "62ed2dae0e15fbb8b0e80ab8",
+    "name": "Farmacia Chamorro",
+    "pharmacist": "Miguel Chamorro",
+    "phone": "968921992",
+    "address": "C. Irene López Heredia, 18",
+    "municipality": "Jumilla",
+    "province": "Murcia",
+    "zipCode": "30520",
+    "email": "",
+    "sanitaryAuth": "",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "web": "",
+      "youtube": ""
+    },
+    "coordinates": [38.48045932268097, -1.3226227093942184],
+    "guards": ["06/08/2022", "14/08/2022", "22/08/2022", "30/08/2022"],
+    "schedule": [
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:00"]
+      ],
+      [
+        ["9:00", "14:00"],
+        ["17:00", "20:00"]
+      ],
+      [["10:00", "13:45"]],
+      []
+    ]
+  }
+]

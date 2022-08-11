@@ -3,11 +3,6 @@ type UbicationType = {
   province: string;
 };
 
-type GuardDatesType = {
-  date: string;
-  ids: string[];
-};
-
 type PharmaciesType = {
   id: string;
   name: string;
@@ -21,6 +16,7 @@ type PharmaciesType = {
   email: string;
   sanitaryAuth: string;
   detailUrl: string;
+  guards: string[];
   social: {
     facebook: string;
     instagram: string;
