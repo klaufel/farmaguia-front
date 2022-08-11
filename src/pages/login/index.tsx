@@ -1,8 +1,17 @@
+import { useState } from 'react';
 import Link from 'next/link';
 
 import Logo from '../../components/logo';
 
 export default function PageLogin() {
+  const [_form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    setError(true);
+  };
+
   return (
     <section className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <Link href="/" passHref>
@@ -15,7 +24,7 @@ export default function PageLogin() {
       </h1>
       <div className="w-full bg-white rounded-lg shadow-card md:mt-0 sm:max-w-md xl:p-0">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <form className="space-y-4 md:space-y-6" method="post">
+          <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -29,6 +38,12 @@ export default function PageLogin() {
                 id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 required
+                onChange={({ target: { value } }) =>
+                  setForm((prevState) => ({
+                    ...prevState,
+                    email: value,
+                  }))
+                }
               />
             </div>
             <div>
@@ -44,6 +59,12 @@ export default function PageLogin() {
                 id="password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 required
+                onChange={({ target: { value } }) =>
+                  setForm((prevState) => ({
+                    ...prevState,
+                    password: value,
+                  }))
+                }
               />
             </div>
             <div className="flex items-center justify-between">
@@ -72,18 +93,11 @@ export default function PageLogin() {
           </form>
         </div>
       </div>
-      {/* <a
-        href="#"
-        className="text-sm font-semibold text-gray-500 hover:underline mt-8"
-      >
-        ¿Has olvidado tu contraseña?
-      </a>
-      <p className="text-sm text-gray-500 mt-4">
-        ¿Todavía no tienes cuenta?{' '}
-        <a href="#" className="font-semibold text-primary-600 hover:underline">
-          Regístrate
-        </a>
-      </p> */}
+      {error && (
+        <p className="text-sm text-red-500 mt-6">
+          Email o contraseña incorrectos
+        </p>
+      )}
     </section>
   );
 }
