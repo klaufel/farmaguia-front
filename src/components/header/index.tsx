@@ -7,7 +7,7 @@ export default function Header() {
     <div className="h-16 sm:h-20 px-4 sm:px-6 sm:py-4 w-full sticky top-0 left-0 bg-white border-b border-gray-100 flex items-center justify-between z-20">
       <div>
         <Link href="/" passHref>
-          <a>
+          <a className="flex">
             <Logo />
           </a>
         </Link>

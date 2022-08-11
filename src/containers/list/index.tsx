@@ -1,6 +1,8 @@
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
+import useMediaQuery from '../../hooks/useMediaQuery';
+
 const Map = dynamic(() => import('../../components/map'), {
   ssr: false,
   suspense: true,
@@ -26,6 +28,8 @@ export default function ContainerList({
 }: ContainerListProps) {
   const isMounted = useMounted();
 
+  const showMap = useMediaQuery('(min-width: 768px)');
+
   const { currentDate, pharmaciesList } = usePharmacies({ pharmacies });
 
   const { municipality } = ubication;
@@ -49,10 +53,10 @@ export default function ContainerList({
           </ul>
         </div>
         <div
-          className="flex-1 sticky hidden sm:block bg-map"
+          className="flex-1 sticky hidden md:block bg-map"
           style={{ top: '5rem', height: 'calc(100vh - 5rem)' }}
         >
-          {isMounted && (
+          {isMounted && showMap && (
             <Suspense fallback={null}>
               <Map pharmacies={pharmaciesList} />
             </Suspense>
