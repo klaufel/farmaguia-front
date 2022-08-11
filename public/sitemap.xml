@@ -46,23 +46,8 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://farmainfo.app/murcia</loc>
-  <lastmod>2022-07-30T07:51:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://farmainfo.app/murcia/jumilla</loc>
   <lastmod>2022-07-30T07:51:39+00:00</lastmod>
   <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://farmainfo.app/murcia/yecla</loc>
-  <lastmod>2022-07-30T07:51:39+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://farmainfo.app/murcia/yecla/farmacia-yago-torregrosa</loc>
-  <lastmod>2022-07-30T07:51:39+00:00</lastmod>
-  <priority>0.64</priority>
 </url>
 </urlset>
