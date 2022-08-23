@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { kebabCase } from '../../utils';
@@ -31,9 +32,9 @@ interface ContainerListProps {
 }
 
 export default function ContainerList({ pharmacies }: ContainerListProps) {
-  const { currentDate, pharmaciesList } = usePharmacies({
-    pharmacies,
-  });
+  const { asPath } = useRouter();
+
+  const { currentDate, pharmaciesList } = usePharmacies({ pharmacies });
 
   const [pharmacy] = pharmaciesList;
   const {
@@ -188,7 +189,7 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
             href={`mailto:info@farmainfo.app?subject=${encodeURIComponent(
               `Información errónea en ${name} de ${municipality}`
             )}&body=${encodeURIComponent(
-              `Hola. He detectado información errónea en ${name} de ${municipality}.\n\n${window.location.href}\n\n`
+              `Hola. He detectado información errónea en ${name} de ${municipality}.\n\nhttps://farmainfo.app${asPath}\n\n`
             )}`}
             className="text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-primary/55"
             rel="noreferrer"
