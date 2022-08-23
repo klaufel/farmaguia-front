@@ -6,9 +6,9 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   ClockIcon,
-  LocationMarkerIcon,
+  HomeIcon,
   PhoneIcon,
-} from '@heroicons/react/outline';
+} from '@heroicons/react/24/outline';
 
 import PharmacySchedule from '../pharmacySchedule';
 
@@ -83,7 +83,7 @@ export default function PharmacyCard({
           {i18n.phone(phone)}
         </span>
         <span className="text-sm mt-1 flex items-center">
-          <LocationMarkerIcon className="w-4 mr-2" />
+          <HomeIcon className="w-4 mr-2" />
           {address}
         </span>
         <div className="text-sm mt-1 mb-3">

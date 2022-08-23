@@ -4,7 +4,11 @@ import dynamic from 'next/dynamic';
 import { kebabCase } from '../../utils';
 import Image from 'next/image';
 
-import { GlobeAltIcon, MailIcon, PhoneIcon } from '@heroicons/react/outline';
+import {
+  AtSymbolIcon,
+  GlobeAltIcon,
+  PhoneIcon,
+} from '@heroicons/react/24/outline';
 
 const i18n = {
   phone: (str: string) => str.match(/.{1,3}/g)?.join(' '),
@@ -118,7 +122,7 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
             </span>
             {email && (
               <span className="flex items-center">
-                <MailIcon className="w-4 mr-2" />
+                <AtSymbolIcon className="w-4 mr-2" />
                 {email}
               </span>
             )}
