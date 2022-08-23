@@ -11,7 +11,7 @@ export default function Footer() {
     <div className="w-full bg-primary">
       <div className="container py-10 px-4 sm:px-6 mx-auto text-white">
         <span className="font-semibold">Farmacias de guardia</span>
-        <ul className="mt-4">
+        <ul className="mt-4 mb-10">
           {links.map(({ url, title }) => (
             <li key={url} className="py-1">
               <Link href={url} passHref>
@@ -20,6 +20,9 @@ export default function Footer() {
             </li>
           ))}
         </ul>
+        <a href="mailto:info@farmainfo.app" target="_blank" rel="noreferrer">
+          info@farmainfo.app
+        </a>
       </div>
     </div>
   );
