@@ -99,16 +99,15 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
             </a>
           </Link>
         </div>
-        <div className="flex w-full rounded-2xl overflow-hidden ">
+        {/* <div className="flex w-full rounded-2xl overflow-hidden border-b border-gray-100" mb-10>
           <Image
             src="/images/pharmacy-mosaic.webp"
             alt={`Fotos de ${name}`}
             width="1104"
             height="548"
           />
-        </div>
-
-        <div className="py-10 border-t border-gray-100">
+        </div> */}
+        <div className="py-10">
           <h3 className="text-sm md:text-xl font-semibold mb-4">
             Información de la farmacia
           </h3>
@@ -173,6 +172,26 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
               <Map pharmacies={pharmaciesList} maxZoom={16} />
             </Suspense>
           </div>
+        </div>
+        <div className="py-10 border-t border-gray-100">
+          <h3 className="text-sm md:text-xl font-semibold mb-4">
+            ¿Hay algún error en la información?
+          </h3>
+          <p className="mb-6 block">
+            Explícanos qué has detectado para poder corregirlo.
+          </p>
+          <a
+            href={`mailto:info@farmainfo.app?subject=${encodeURIComponent(
+              `Información errónea en ${name} de ${municipality}`
+            )}&body=${encodeURIComponent(
+              `Hola. He detectado información errónea en ${name} de ${municipality}.\n\n${window.location.href}\n\n`
+            )}`}
+            className="text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 font-medium rounded-lg text-xs sm:text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-primary/55"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Reportar error
+          </a>
         </div>
       </div>
     </div>
