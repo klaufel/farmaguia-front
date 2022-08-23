@@ -1,3 +1,4 @@
+import config from '@farmainfo/config';
 import Link from 'next/link';
 
 const links = [
@@ -20,8 +21,8 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-        <a href="mailto:info@farmainfo.app" target="_blank" rel="noreferrer">
-          info@farmainfo.app
+        <a href={`mailto:${config.email}`} target="_blank" rel="noreferrer">
+          {config.email}
         </a>
       </div>
     </div>

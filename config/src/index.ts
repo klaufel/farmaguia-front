@@ -8,7 +8,7 @@ const apiInternalUrl =
 const config = {
   apiUrl,
   apiInternalUrl,
-  EMAIL: 'info@farmainfo.app',
+  email: 'info@farmainfo.app',
   GTAG_ID: 'G-GKMMPPEVJK',
   WEEK: {
     DAYS: [

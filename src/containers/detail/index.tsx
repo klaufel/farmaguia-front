@@ -1,3 +1,4 @@
+import config from '@farmainfo/config';
 import { Suspense } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -186,7 +187,7 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
             Explícanos qué has detectado para poder corregirlo.
           </p>
           <a
-            href={`mailto:info@farmainfo.app?subject=${encodeURIComponent(
+            href={`mailto:${config.email}?subject=${encodeURIComponent(
               `Información errónea en ${name} de ${municipality}`
             )}&body=${encodeURIComponent(
               `Hola. He detectado información errónea en ${name} de ${municipality}.\n\nhttps://farmainfo.app${asPath}\n\n`
