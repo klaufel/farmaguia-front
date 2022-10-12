@@ -15,12 +15,13 @@
     "phoenix": "pnpm -r exec -- pnpm dlx rimraf node_modules && pnpm dlx rimraf node_modules pnpm-lock.yaml && pnpm install"
   },
   "dependencies": {
-    "@googlemaps/react-wrapper": "1.1.35",
-    "@heroicons/react": "2.0.12",
     "@farmainfo/config": "workspace:*",
     "@farmainfo/domain": "workspace:*",
     "@farmainfo/theme": "workspace:*",
+    "@googlemaps/react-wrapper": "1.1.35",
+    "@heroicons/react": "2.0.12",
     "classnames": "2.3.2",
+    "firebase": "9.12.0",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"

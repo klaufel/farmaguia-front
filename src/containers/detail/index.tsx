@@ -20,6 +20,8 @@ import Calendar from '../../components/calendar';
 
 import PharmacySchedule from '../../components/pharmacySchedule';
 import PharmacyLabel from '../../components/pharmacyLabel';
+import Breadcrumb from '../../components/breadcrumb';
+
 const Map = dynamic(() => import('../../components/map'), {
   ssr: false,
   suspense: true,
@@ -84,6 +86,13 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
   return (
     <div className="w-full bg-white">
       <div className="container mx-auto max-w-6xl py-10 px-4 sm:px-6 ">
+        <Breadcrumb
+          items={[
+            { label: province, href: `/${kebabCase(province)}` },
+            { label: municipality, href: backUrl },
+            { label: name },
+          ]}
+        />
         <div className="flex items-end justify-between py-4 mb-4 sm:mb-6 border-b border-gray-100">
           <div className="flex flex-col">
             <h1 className="flex items-center text-lg md:text-2xl font-semibold mb-2">
