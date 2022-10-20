@@ -57,7 +57,7 @@ export default function ContainerList({
         >
           {isMounted && showMap && (
             <Suspense fallback={null}>
-              <Map pharmacies={pharmaciesList} />
+              {/* <Map pharmacies={pharmaciesList} /> */}
             </Suspense>
           )}
         </div>

@@ -41,6 +41,13 @@ export default class HttpPharmacyRepository implements InterfaceRepository {
       .toLowerCase();
   }
 
+  private _getShedule(shedule = []) {
+    const sheduleMorning = shedule?.[0] ? [[shedule?.[0], shedule?.[1]]] : [];
+    const sheduleAfternoon = shedule?.[2] ? [[shedule?.[2], shedule?.[3]]] : [];
+
+    return [...sheduleMorning, ...sheduleAfternoon];
+  }
+
   async getPharmacyList() {
     // const docRef = doc(db, 'pharmacies', '62ed2c6b0e15fbb8b0e80ab1');
     // const docSnap = await getDoc(docRef);
@@ -54,6 +61,8 @@ export default class HttpPharmacyRepository implements InterfaceRepository {
         [pharmacy.province, pharmacy.municipality, pharmacy.slug]
           .map((location) => this._kebabCase(location))
           .join('/');
+
+      const { schedule } = pharmacy;
 
       return {
         id: pharmacy.id,
@@ -77,13 +86,13 @@ export default class HttpPharmacyRepository implements InterfaceRepository {
         coordinates: [pharmacy.coordinates._lat, pharmacy.coordinates._long],
         guards: pharmacy.guards ?? [],
         schedule: [
-          pharmacy.schedule.monday ?? [],
-          pharmacy.schedule.tuesday ?? [],
-          pharmacy.schedule.wednesday ?? [],
-          pharmacy.schedule.thursday ?? [],
-          pharmacy.schedule.friday ?? [],
-          pharmacy.schedule.saturday ?? [],
-          pharmacy.schedule.sunday ?? [],
+          this._getShedule(schedule.monday),
+          this._getShedule(schedule.tuesday || schedule.monday),
+          this._getShedule(schedule.wednesday || schedule.monday),
+          this._getShedule(schedule.thursday || schedule.monday),
+          this._getShedule(schedule.friday || schedule.monday),
+          this._getShedule(schedule.saturday),
+          this._getShedule(schedule.sunday),
         ],
       };
     });
@@ -109,6 +118,8 @@ export default class HttpPharmacyRepository implements InterfaceRepository {
         .map((location) => this._kebabCase(location))
         .join('/');
 
+    const { schedule } = pharmacy;
+
     return [
       {
         id: pharmacy.id,
@@ -132,13 +143,13 @@ export default class HttpPharmacyRepository implements InterfaceRepository {
         coordinates: [pharmacy.coordinates._lat, pharmacy.coordinates._long],
         guards: pharmacy.guards ?? [],
         schedule: [
-          pharmacy.schedule.monday ?? [],
-          pharmacy.schedule.tuesday ?? [],
-          pharmacy.schedule.wednesday ?? [],
-          pharmacy.schedule.thursday ?? [],
-          pharmacy.schedule.friday ?? [],
-          pharmacy.schedule.saturday ?? [],
-          pharmacy.schedule.sunday ?? [],
+          this._getShedule(schedule.monday),
+          this._getShedule(schedule.tuesday || schedule.monday),
+          this._getShedule(schedule.wednesday || schedule.monday),
+          this._getShedule(schedule.thursday || schedule.monday),
+          this._getShedule(schedule.friday || schedule.monday),
+          this._getShedule(schedule.saturday),
+          this._getShedule(schedule.sunday),
         ],
       },
     ];
