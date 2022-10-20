@@ -24,7 +24,6 @@ import Breadcrumb from '../../components/breadcrumb';
 
 const Map = dynamic(() => import('../../components/map'), {
   ssr: false,
-  suspense: true,
 });
 
 import usePharmacies from '../../hooks/usePharmacies';

@@ -14,7 +14,6 @@ import PharmacySchedule from '../pharmacySchedule';
 
 const PharmacyLabel = dynamic(() => import('../pharmacyLabel'), {
   ssr: false,
-  suspense: true,
 });
 
 interface PharmacyCardProps extends PharmaciesType {

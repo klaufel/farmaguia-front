@@ -5,7 +5,6 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 
 const Map = dynamic(() => import('../../components/map'), {
   ssr: false,
-  suspense: true,
 });
 
 import PharmacyCard from '../../components/pharmacyCard';

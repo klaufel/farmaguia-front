@@ -60,9 +60,6 @@ const pharmaciesEntitymapper = ({
       ...pharmacy,
       id,
       schedule,
-      detailUrl: `/${kebabCase(pharmacy.province)}/${kebabCase(
-        pharmacy.municipality
-      )}/${kebabCase(pharmacy.name)}`,
       isOnGuard: pharmacy.guards?.includes(formatDate(currentDate)),
       isOpen: getIsPharmacyOpen({ schedule, currentDate }),
     }))

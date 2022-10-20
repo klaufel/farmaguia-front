@@ -15,20 +15,9 @@ export default class GetPharmacyDetailUseCase {
       .toLowerCase();
   }
 
-  private _getPharmacyBySlug({
-    response,
-    pharmacyId,
-  }: {
-    response: [];
-    pharmacyId: string;
-  }) {
-    return response.filter(({ name }) => this._kebabCase(name) === pharmacyId);
-  }
-
   async execute({ pharmacyId }: { pharmacyId: string }) {
-    const response = await this.repository.getPharmacyList();
-    const detail = this._getPharmacyBySlug({ response, pharmacyId });
+    const response = await this.repository.getPharmacyDetail({ pharmacyId });
 
-    return detail;
+    return response;
   }
 }
