@@ -1,8 +1,8 @@
-const apiUrl = 'https://api.farmainfo.app';
+const apiUrl = 'https://api.farmainfo.app/api';
 
 const apiInternalUrl =
   process.env.NODE_ENV === 'development'
-    ? 'http://locahost:3000'
+    ? 'http://localhost:3001'
     : process.env.NEXT_PUBLIC_VERCEL_URL;
 
 const firebaseConfig = {

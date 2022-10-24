@@ -1,5 +1,5 @@
-import FromPharmacyApiResponseToPharmacyEntity from './FromPharmacyApiResponseToPharmacyEntity';
+import FromPharmacyApiResponseToPharmacyEntityMapper from './FromPharmacyApiResponseToPharmacyEntityMapper';
 
-export const fromPharmacyApiResponseToPharmacyEntity = () => {
-  return new FromPharmacyApiResponseToPharmacyEntity();
+export const fromPharmacyApiResponseToPharmacyEntityMapper = () => {
+  return new FromPharmacyApiResponseToPharmacyEntityMapper();
 };

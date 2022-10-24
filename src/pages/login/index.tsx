@@ -1,5 +1,6 @@
 import { type SyntheticEvent, useState, useCallback } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import { auth } from '../../../firebase.config';
@@ -7,6 +8,7 @@ import { auth } from '../../../firebase.config';
 import Logo from '../../components/logo';
 import Input from '../../components/input';
 import FormControl from '../../components/formControl';
+import { useUserContext } from '../../contexts/user';
 
 type Error = {
   code: string;
@@ -14,6 +16,10 @@ type Error = {
 };
 
 export default function PageLogin() {
+  const router = useRouter();
+
+  const user = useUserContext();
+
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,7 +36,8 @@ export default function PageLogin() {
 
     signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
-        localStorage.setItem('user', JSON.stringify(userCredential.user));
+        user.dispatch({ type: 'LOGIN', payload: userCredential.user });
+        router.push('/dashboard');
       })
       .catch(({ code, message }) => setError({ code, message }))
       .finally(() => setIsLoading(false));

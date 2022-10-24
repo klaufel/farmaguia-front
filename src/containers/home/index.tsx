@@ -16,7 +16,7 @@ export default function ContainerHome() {
           información.
         </p>
       </div>
-      <Link href="/murcia/jumilla">
+      <Link href="/farmacias/murcia/jumilla">
         <a className="flex bg-primary p-4 sm:p-6 shadow-card rounded-xl cursor-pointer max-w-lg m-auto items-center justify-center">
           <h2 className="text-lg font-semibold text-white">
             Farmacias en Jumilla

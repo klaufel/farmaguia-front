@@ -16,7 +16,9 @@ const i18n = {
   phone: (str: string) => str.match(/.{1,3}/g)?.join(' '),
 };
 
-import Calendar from '../../components/calendar';
+const Calendar = dynamic(() => import('../../components/calendar'), {
+  ssr: false,
+});
 
 import PharmacySchedule from '../../components/pharmacySchedule';
 import PharmacyLabel from '../../components/pharmacyLabel';
@@ -56,7 +58,9 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
   } = pharmacy;
   const { web } = social;
 
-  const backUrl = `/${kebabCase(province)}/${kebabCase(municipality)}`;
+  const backUrl = `/farmacias/${kebabCase(province)}/${kebabCase(
+    municipality
+  )}`;
 
   const fullAddress = [address, zipCode, municipality, province].join(', ');
 
@@ -87,7 +91,7 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
       <div className="container mx-auto max-w-6xl py-10 px-4 sm:px-6 ">
         <Breadcrumb
           items={[
-            { label: province, href: `/${kebabCase(province)}` },
+            { label: province, href: `/farmacias/${kebabCase(province)}` },
             { label: municipality, href: backUrl },
             { label: name },
           ]}

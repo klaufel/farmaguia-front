@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import domain from '@farmainfo/domain';
 
-import ContainerDetail from '../../../../containers/detail';
+import ContainerDetail from '../../../../../containers/detail';
 
 interface PageListProps {
   pharmacies: PharmaciesType[];

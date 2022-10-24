@@ -1,6 +1,6 @@
 import domain from '@farmainfo/domain';
 
-import ContainerList from '../../containers/list';
+import ContainerList from '../../../containers/list';
 
 interface PageListProps {
   pharmacies: PharmaciesType[];
