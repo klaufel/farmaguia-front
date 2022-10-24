@@ -6,8 +6,11 @@ export default class GetPharmacyListUseCase {
     this.repository = repository;
   }
 
-  async execute(query?: {}) {
-    const response = await this.repository.getPharmacyList({ query });
+  async execute({ municipality, province } = {}) {
+    const response = await this.repository.getPharmacyList({
+      municipality,
+      province,
+    });
 
     return response;
   }

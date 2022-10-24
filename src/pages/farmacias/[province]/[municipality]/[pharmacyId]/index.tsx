@@ -33,6 +33,12 @@ export const getServerSideProps = async ({ query }: any) => {
     .get('get_pharmacy_detail_use_case')
     .execute({ pharmacyId });
 
+  if (!pharmacies) {
+    return {
+      notFound: true,
+    };
+  }
+
   const [{ province, municipality, name, zipCode, address, pharmacist }] =
     pharmacies;
   const ubication = { municipality, province };

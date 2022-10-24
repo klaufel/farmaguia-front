@@ -22,12 +22,23 @@ export default function PageList({
   );
 }
 
-export const getServerSideProps = async ({ query }: any) => {
-  const pharmacies = await domain
-    .get('get_pharmacy_list_use_case')
-    .execute(query);
+export const getServerSideProps = async ({
+  query,
+}: {
+  query: { ubication: [string, string] };
+}) => {
+  const pharmacies = await domain.get('get_pharmacy_list_use_case').execute({
+    municipality: query?.ubication[1],
+    province: query?.ubication[0],
+  });
 
-  const [{ province, municipality }] = pharmacies;
+  if (!pharmacies.length) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const [{ municipality, province }] = pharmacies;
   const ubication = { municipality, province };
 
   const seoPage = {

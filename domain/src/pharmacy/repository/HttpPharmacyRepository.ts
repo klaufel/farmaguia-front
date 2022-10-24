@@ -21,27 +21,34 @@ export default class HttpPharmacyRepository implements InterfaceRepository {
       fromPharmacyApiResponseToPharmacyEntityMapper;
   }
 
-  async getPharmacyList() {
-    const { data: pharmaciesList } = await this.fetcher({
-      method: 'GET',
-      url: '/pharmacies',
-      baseURL: this.config.apiUrl,
-    });
+  async getPharmacyList({ municipality, province }) {
+    try {
+      const { data: pharmaciesList } = await this.fetcher.get(
+        `${this.config.apiUrl}/pharmacies`,
+        { params: { municipality, province } }
+      );
 
-    return pharmaciesList.map((pharmacy) =>
-      this.fromPharmacyApiResponseToPharmacyEntityMapper.map(pharmacy)
-    );
+      return pharmaciesList.map((pharmacy) =>
+        this.fromPharmacyApiResponseToPharmacyEntityMapper.map(pharmacy)
+      );
+    } catch {
+      return null;
+    }
   }
 
   async getPharmacyDetail({ pharmacyId }: { pharmacyId: string }) {
-    const { data } = await this.fetcher({
-      method: 'GET',
-      url: '/pharmacies',
-      baseURL: this.config.apiUrl,
-    });
+    try {
+      const { data } = await this.fetcher.get(
+        `${this.config.apiUrl}/pharmacies/${pharmacyId}`
+      );
 
-    const [pharmacy] = data;
+      const [pharmacy] = data;
 
-    return [this.fromPharmacyApiResponseToPharmacyEntityMapper.map(pharmacy)];
+      return [
+        this.fromPharmacyApiResponseToPharmacyEntityMapper?.map(pharmacy),
+      ];
+    } catch {
+      return null;
+    }
   }
 }

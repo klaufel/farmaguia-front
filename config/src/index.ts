@@ -1,4 +1,7 @@
-const apiUrl = 'https://api.farmainfo.app/api';
+const apiUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3001/api'
+    : 'https://api.farmainfo.app/api';
 
 const apiInternalUrl =
   process.env.NODE_ENV === 'development'

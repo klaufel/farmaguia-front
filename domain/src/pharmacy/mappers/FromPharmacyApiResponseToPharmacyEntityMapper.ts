@@ -43,11 +43,23 @@ export default class FromPharmacyApiResponseToPharmacyEntityMapper {
       .toLowerCase();
   }
 
-  private _getShedule(shedule = []) {
+  private _getSheduleDay(shedule = []) {
     const sheduleMorning = shedule?.[0] ? [[shedule?.[0], shedule?.[1]]] : [];
     const sheduleAfternoon = shedule?.[2] ? [[shedule?.[2], shedule?.[3]]] : [];
 
     return [...sheduleMorning, ...sheduleAfternoon];
+  }
+
+  private _getShedule(schedule = {}) {
+    return [
+      this._getSheduleDay(schedule.monday),
+      this._getSheduleDay(schedule.tuesday || schedule.monday),
+      this._getSheduleDay(schedule.wednesday || schedule.monday),
+      this._getSheduleDay(schedule.thursday || schedule.monday),
+      this._getSheduleDay(schedule.friday || schedule.monday),
+      this._getSheduleDay(schedule.saturday),
+      this._getSheduleDay(schedule.sunday),
+    ];
   }
 
   map(pharmacy = {}) {
@@ -67,9 +79,9 @@ export default class FromPharmacyApiResponseToPharmacyEntityMapper {
       address: pharmacy.address,
       municipality: pharmacy.municipality,
       province: pharmacy.province,
-      zipCode: pharmacy.zipCode,
+      zipCode: pharmacy.postal_code,
       email: pharmacy.email,
-      sanitaryAuth: pharmacy.sanitaryAuth,
+      sanitaryAuth: pharmacy.sanitary_auth,
       detailUrl,
       social: {
         facebook: '',
@@ -80,15 +92,7 @@ export default class FromPharmacyApiResponseToPharmacyEntityMapper {
       },
       coordinates: [pharmacy.coordinates.lat, pharmacy.coordinates.long],
       guards: pharmacy.guards ?? [],
-      schedule: [
-        this._getShedule(schedule.monday),
-        this._getShedule(schedule.tuesday || schedule.monday),
-        this._getShedule(schedule.wednesday || schedule.monday),
-        this._getShedule(schedule.thursday || schedule.monday),
-        this._getShedule(schedule.friday || schedule.monday),
-        this._getShedule(schedule.saturday),
-        this._getShedule(schedule.sunday),
-      ],
+      schedule: this._getShedule(pharmacy.schedule),
     };
   }
 }
