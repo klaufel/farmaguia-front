@@ -6,6 +6,7 @@ import '@farmainfo/theme';
 import '../styles/globals.css';
 
 import UserContextProvider from '../contexts/user';
+import LoadingBar from '../components/loadingBar';
 
 type User = {
   userEmail: string | null;
@@ -24,6 +25,7 @@ export default function MyApp({
   return (
     <UserContextProvider defaultValue={user}>
       <LayoutMain hasFooter={hasFooter} hasHeader={hasHeader}>
+        <LoadingBar />
         <Component {...pageProps} />
       </LayoutMain>
     </UserContextProvider>

@@ -1,0 +1,28 @@
+@keyframes animationWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.loadingBar {
+  background-color: var(--c-white);
+  height: 0.4rem;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 90;
+}
+
+.loadingBar::after {
+  animation: animationWidth 1s ease-out;
+  background: var(--c-primary-dark);
+  content: '';
+  height: 50%;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
