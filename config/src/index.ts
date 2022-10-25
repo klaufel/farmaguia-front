@@ -23,6 +23,9 @@ const config = {
   apiInternalUrl,
   firebaseConfig,
   email: 'info@farmainfo.app',
+  map: {
+    apiKey: 'AIzaSyATVUSxdgu-upp8c_dfrUbw3CurKETvbd8',
+  },
   GTAG_ID: 'G-GKMMPPEVJK',
   WEEK: {
     DAYS: [

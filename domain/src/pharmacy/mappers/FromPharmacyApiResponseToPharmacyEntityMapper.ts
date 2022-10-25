@@ -69,8 +69,6 @@ export default class FromPharmacyApiResponseToPharmacyEntityMapper {
         .map((location) => this._kebabCase(location))
         .join('/');
 
-    const { schedule } = pharmacy;
-
     return {
       id: pharmacy.id,
       name: pharmacy.name,
@@ -83,6 +81,7 @@ export default class FromPharmacyApiResponseToPharmacyEntityMapper {
       email: pharmacy.email,
       sanitaryAuth: pharmacy.sanitary_auth,
       detailUrl,
+      images: pharmacy.images ?? [],
       social: {
         facebook: '',
         instagram: '',

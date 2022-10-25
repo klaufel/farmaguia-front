@@ -32,7 +32,7 @@ export const getServerSideProps = async ({
     province: query?.ubication[0],
   });
 
-  if (!pharmacies.length) {
+  if (!pharmacies?.length) {
     return {
       notFound: true,
     };

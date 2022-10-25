@@ -1,10 +1,11 @@
 import config from '@farmainfo/config';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { kebabCase } from '../../utils';
-import Image from 'next/image';
+
+import Image from 'next/future/image';
 
 import {
   AtSymbolIcon,
@@ -38,6 +39,8 @@ interface ContainerListProps {
 export default function ContainerList({ pharmacies }: ContainerListProps) {
   const { asPath } = useRouter();
 
+  const [isActiveMap, setIsActiveMap] = useState<boolean>(false);
+
   const { currentDate, pharmaciesList } = usePharmacies({ pharmacies });
 
   const [pharmacy] = pharmaciesList;
@@ -45,6 +48,8 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
     address,
     email,
     isOnGuard,
+    id,
+    images,
     isOpen,
     municipality,
     name,
@@ -53,6 +58,7 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
     province,
     schedule,
     social,
+    coordinates,
     zipCode,
     guards,
   } = pharmacy;
@@ -117,14 +123,16 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
             </a>
           </Link>
         </div>
-        {/* <div className="flex w-full rounded-2xl overflow-hidden border-b border-gray-100" mb-10>
-          <Image
-            src="/images/pharmacy-mosaic.webp"
-            alt={`Fotos de ${name}`}
-            width="1104"
-            height="548"
-          />
-        </div> */}
+        <div className="flex w-full rounded-2xl overflow-hidden border-b border-gray-100 ">
+          {!!images.length && (
+            <Image
+              src={`https://res.cloudinary.com/klaufel/image/upload/v1666661789/pharmacies/${id}/${images[0]}`}
+              alt={`Fotos de ${name}`}
+              width="1104"
+              height="548"
+            />
+          )}
+        </div>
         <div className="py-10">
           <h3 className="text-sm md:text-xl font-semibold mb-4">
             Información de la farmacia
@@ -186,8 +194,14 @@ export default function ContainerList({ pharmacies }: ContainerListProps) {
           <h3 className="text-sm md:text-xl font-semibold mb-4">Ubicación</h3>
           <address className="not-italic mb-6 block">{fullAddress}</address>
           <div className="w-full h-96 rounded-2xl overflow-hidden bg-map">
+            {!isActiveMap && (
+              <img
+                onClick={() => setIsActiveMap(true)}
+                src={`https://maps.googleapis.com/maps/api/staticmap?center=${coordinates[0]},${coordinates[1]}&zoom=13&size=1104x384&maptype=roadmap&markers=color:green%7Clabel:C%7C${coordinates[0]},${coordinates[1]}&key=${config.map.apiKey}`}
+              />
+            )}
             <Suspense fallback={null}>
-              {/* <Map pharmacies={pharmaciesList} maxZoom={16} /> */}
+              {isActiveMap && <Map pharmacies={pharmaciesList} maxZoom={16} />}
             </Suspense>
           </div>
         </div>

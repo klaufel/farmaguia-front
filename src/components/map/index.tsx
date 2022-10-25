@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { Wrapper } from '@googlemaps/react-wrapper';
-
+import config from '@farmainfo/config';
 import { styles } from './mapStyle';
 
 interface MapProps extends google.maps.MapOptions {
@@ -76,7 +76,7 @@ interface MapWrapperProps extends MapProps {
 
 export default function MapWrapper({ maxZoom, pharmacies }: MapWrapperProps) {
   return (
-    <Wrapper apiKey="AIzaSyCJWZ2UyzY6YoROYqpHQwsU5xUkdeGHieI">
+    <Wrapper apiKey={config.map.apiKey}>
       <Map
         center={{ lat: 38.4771946, lng: -1.32498899 }}
         maxZoom={maxZoom}
