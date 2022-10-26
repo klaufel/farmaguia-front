@@ -1,5 +1,7 @@
+import { type Config } from '@farmainfo/config';
+
 interface DomainUseCase {
-  config: object;
+  config: Config;
 }
 
 interface DomainRepository {

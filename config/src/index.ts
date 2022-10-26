@@ -1,12 +1,4 @@
-const apiUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3001/api'
-    : 'https://api.farmainfo.app/api';
-
-const apiInternalUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3001'
-    : process.env.NEXT_PUBLIC_VERCEL_URL;
+const apiUrl = 'https://api.farmainfo.app/api';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCdyePcS5EQ_XaUCv4nj5cMlT47e6zoImA',
@@ -20,7 +12,6 @@ const firebaseConfig = {
 
 const config = {
   apiUrl,
-  apiInternalUrl,
   firebaseConfig,
   email: 'info@farmainfo.app',
   map: {
@@ -39,5 +30,7 @@ const config = {
     ],
   },
 };
+
+export type Config = typeof config;
 
 export default config;

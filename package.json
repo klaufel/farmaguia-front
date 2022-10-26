@@ -7,7 +7,7 @@
     "config"
   ],
   "scripts": {
-    "dev": "NODE_ENV=development next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

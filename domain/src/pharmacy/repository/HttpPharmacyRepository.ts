@@ -1,5 +1,7 @@
+import { type Config } from '@farmainfo/config';
+
 interface InterfaceRepository {
-  config: object;
+  config: Config;
   fetcher: any;
   fromPharmacyApiResponseToPharmacyEntityMapper: any;
 }
@@ -21,15 +23,21 @@ export default class HttpPharmacyRepository implements InterfaceRepository {
       fromPharmacyApiResponseToPharmacyEntityMapper;
   }
 
-  async getPharmacyList({ municipality, province }) {
+  async getPharmacyList({
+    municipality,
+    province,
+  }: {
+    municipality?: string;
+    province: string;
+  }) {
     try {
       const { data: pharmaciesList } = await this.fetcher.get(
         `${this.config.apiUrl}/pharmacies`,
         { params: { municipality, province } }
       );
 
-      return pharmaciesList.map((pharmacy) =>
-        this.fromPharmacyApiResponseToPharmacyEntityMapper.map(pharmacy)
+      return pharmaciesList.map((pharmacies: any) =>
+        this.fromPharmacyApiResponseToPharmacyEntityMapper.map(pharmacies)
       );
     } catch {
       return null;
